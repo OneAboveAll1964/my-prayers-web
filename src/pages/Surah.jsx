@@ -5,28 +5,35 @@ import { Bookmark } from 'lucide-react'
 import { PageHeader } from '../components/Layout/PageHeader'
 import { Spinner } from '../components/ui/Spinner'
 import { AyahRow } from '../components/Surah/AyahRow'
-import { getSurah } from '../lib/quran'
+import { getSurah, getSurahCached } from '../lib/quran'
 import { setLastSurah, toggleBookmarkSurah, useFavorites } from '../store/favorites'
 
 export default function Surah() {
   const { t, i18n } = useTranslation()
   const { number } = useParams()
-  const [surah, setSurah] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const fav = useFavorites()
   const num = Number(number)
+  const cached = getSurahCached(num, i18n.language)
+  const [surah, setSurah] = useState(cached || null)
+  const [loading, setLoading] = useState(!cached)
+  const fav = useFavorites()
   const marked = fav.surahs.includes(num)
 
   useEffect(() => {
     let cancelled = false
     queueMicrotask(() => {
       if (cancelled) return
-      setLoading(true)
+      const c = getSurahCached(num, i18n.language)
+      if (c) {
+        setSurah(c)
+        setLoading(false)
+      } else {
+        setLoading(true)
+      }
       getSurah(num, i18n.language)
         .then((data) => {
           if (cancelled) return
-          setSurah(data)
           if (data) {
+            setSurah(data)
             setLastSurah({
               number: data.number,
               englishName: data.englishName,

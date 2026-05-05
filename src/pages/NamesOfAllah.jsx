@@ -3,19 +3,29 @@ import { useTranslation } from 'react-i18next'
 import { PageHeader } from '../components/Layout/PageHeader'
 import { Spinner } from '../components/ui/Spinner'
 import { NameCard } from '../components/NamesOfAllah/NameCard'
-import { getNamesOfAllah } from '../lib/repositories/nameOfAllahRepository'
+import {
+  getNamesOfAllah,
+  getNamesOfAllahCached,
+} from '../lib/repositories/nameOfAllahRepository'
 import './NamesOfAllah.css'
 
 export default function NamesOfAllah() {
   const { t, i18n } = useTranslation()
-  const [items, setItems] = useState([])
-  const [loading, setLoading] = useState(true)
+  const cached = getNamesOfAllahCached(i18n.language)
+  const [items, setItems] = useState(cached || [])
+  const [loading, setLoading] = useState(!cached)
 
   useEffect(() => {
     let cancelled = false
     queueMicrotask(() => {
       if (cancelled) return
-      setLoading(true)
+      const c = getNamesOfAllahCached(i18n.language)
+      if (c) {
+        setItems(c)
+        setLoading(false)
+      } else {
+        setLoading(true)
+      }
       getNamesOfAllah(i18n.language).then((list) => {
         if (!cancelled) {
           setItems(list)

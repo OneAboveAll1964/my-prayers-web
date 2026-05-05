@@ -4,19 +4,26 @@ import { useTranslation } from 'react-i18next'
 import { PageHeader } from '../components/Layout/PageHeader'
 import { Spinner } from '../components/ui/Spinner'
 import { AzkarItemCard } from '../components/AzkarItems/AzkarItemCard'
-import { getAzkarItems } from '../lib/repositories/hisnulMuslimRepository'
+import { getAzkarItems, getAzkarItemsCached } from '../lib/repositories/hisnulMuslimRepository'
 
 export default function AzkarItems() {
   const { t, i18n } = useTranslation()
   const { chapterId } = useParams()
-  const [items, setItems] = useState([])
-  const [loading, setLoading] = useState(true)
+  const cached = getAzkarItemsCached({ language: i18n.language, chapterId: Number(chapterId) })
+  const [items, setItems] = useState(cached || [])
+  const [loading, setLoading] = useState(!cached)
 
   useEffect(() => {
     let cancelled = false
     queueMicrotask(() => {
       if (cancelled) return
-      setLoading(true)
+      const c = getAzkarItemsCached({ language: i18n.language, chapterId: Number(chapterId) })
+      if (c) {
+        setItems(c)
+        setLoading(false)
+      } else {
+        setLoading(true)
+      }
       getAzkarItems({ language: i18n.language, chapterId: Number(chapterId) }).then((list) => {
         if (!cancelled) {
           setItems(list)

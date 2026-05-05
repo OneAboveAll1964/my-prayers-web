@@ -6,13 +6,14 @@ import { Spinner } from '../components/ui/Spinner'
 import { TextInput } from '../components/ui/Field'
 import { SurahRow } from '../components/Quran/SurahRow'
 import { LastReadCard } from '../components/Quran/LastReadCard'
-import { getSurahList } from '../lib/quran'
+import { getSurahList, getSurahListCached } from '../lib/quran'
 import { useFavorites } from '../store/favorites'
 
 export default function Quran() {
   const { t } = useTranslation()
-  const [list, setList] = useState([])
-  const [loading, setLoading] = useState(true)
+  const cached = getSurahListCached()
+  const [list, setList] = useState(cached || [])
+  const [loading, setLoading] = useState(!cached)
   const [query, setQuery] = useState('')
   const fav = useFavorites()
 
