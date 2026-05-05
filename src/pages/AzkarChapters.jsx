@@ -6,22 +6,40 @@ import { PageHeader } from '../components/Layout/PageHeader'
 import { Spinner } from '../components/ui/Spinner'
 import { TextInput } from '../components/ui/Field'
 import { ChapterRow } from '../components/AzkarChapters/ChapterRow'
-import { getAzkarCategories, getAzkarChapters, searchAzkarChapters } from '../lib/repositories/hisnulMuslimRepository'
+import {
+  getAzkarCategories,
+  getAzkarCategoriesCached,
+  getAzkarChapters,
+  getAzkarChaptersCached,
+  searchAzkarChapters,
+} from '../lib/repositories/hisnulMuslimRepository'
 
 export default function AzkarChapters() {
   const { t, i18n } = useTranslation()
   const { categoryId } = useParams()
   const id = Number(categoryId)
-  const [chapters, setChapters] = useState([])
-  const [loading, setLoading] = useState(true)
+  const cachedChapters = getAzkarChaptersCached({ language: i18n.language, categoryId: id })
+  const cachedCats = getAzkarCategoriesCached(i18n.language)
+  const [chapters, setChapters] = useState(cachedChapters || [])
+  const [loading, setLoading] = useState(!cachedChapters)
   const [query, setQuery] = useState('')
-  const [categoryName, setCategoryName] = useState('')
+  const [categoryName, setCategoryName] = useState(
+    cachedCats?.find((c) => c.id === id)?.name || '',
+  )
 
   useEffect(() => {
     let cancelled = false
     queueMicrotask(() => {
       if (cancelled) return
-      setLoading(true)
+      const ch = getAzkarChaptersCached({ language: i18n.language, categoryId: id })
+      const cs = getAzkarCategoriesCached(i18n.language)
+      if (ch) {
+        setChapters(ch)
+        setLoading(false)
+      } else {
+        setLoading(true)
+      }
+      if (cs) setCategoryName(cs.find((c) => c.id === id)?.name || '')
       Promise.all([
         getAzkarChapters({ language: i18n.language, categoryId: id }),
         getAzkarCategories(i18n.language),

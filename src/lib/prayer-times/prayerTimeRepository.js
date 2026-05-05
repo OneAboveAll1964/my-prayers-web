@@ -33,6 +33,17 @@ function adjustDst(prayer) {
   })
 }
 
+function rowToPrayer(row, date) {
+  return {
+    fajr: timeStringToDate(row.fajr, date),
+    sunrise: timeStringToDate(row.sunrise, date),
+    dhuhr: timeStringToDate(row.dhuhr, date),
+    asr: timeStringToDate(row.asr, date),
+    maghrib: timeStringToDate(row.maghrib, date),
+    isha: timeStringToDate(row.isha, date),
+  }
+}
+
 export async function getPrayerTimes({ location, date, attribute, useFixedPrayer = true }) {
   if (!location) return null
   let prayer = null
@@ -45,16 +56,7 @@ export async function getPrayerTimes({ location, date, attribute, useFixedPrayer
       .eq('location_id', id)
       .eq('date', toDbDate(date))
       .maybeSingle()
-    if (data) {
-      prayer = adjustDst({
-        fajr: timeStringToDate(data.fajr, date),
-        sunrise: timeStringToDate(data.sunrise, date),
-        dhuhr: timeStringToDate(data.dhuhr, date),
-        asr: timeStringToDate(data.asr, date),
-        maghrib: timeStringToDate(data.maghrib, date),
-        isha: timeStringToDate(data.isha, date),
-      })
-    }
+    if (data) prayer = adjustDst(rowToPrayer(data, date))
   }
 
   if (!prayer) {
@@ -64,12 +66,35 @@ export async function getPrayerTimes({ location, date, attribute, useFixedPrayer
   return applyOffset(prayer, attribute.offset)
 }
 
-export async function getMonthPrayerTimes({ location, year, month, attribute }) {
-  const days = new Date(year, month + 1, 0).getDate()
-  const out = []
-  for (let d = 1; d <= days; d++) {
-    const date = new Date(year, month, d)
-    out.push({ date, prayer: await getPrayerTimes({ location, date, attribute }) })
+export async function getMonthPrayerTimes({ location, year, month, attribute, useFixedPrayer = true }) {
+  if (!location) return []
+  const dayCount = new Date(year, month + 1, 0).getDate()
+  const dates = []
+  for (let d = 1; d <= dayCount; d++) dates.push(new Date(year, month, d))
+
+  const useFixed = location.has_fixed_prayer_time && useFixedPrayer
+  if (!useFixed) {
+    const calc = new CalculatedPrayerTime(attribute)
+    return dates.map((date) => {
+      const raw = calc.getPrayerTimes(location, date)
+      return { date, prayer: raw ? applyOffset(raw, attribute.offset) : null }
+    })
   }
-  return out
+
+  const id = location.prayer_dependent_id ?? location.id
+  const dbDates = dates.map(toDbDate)
+  const { data } = await supabase
+    .from('prayer_time')
+    .select('date, fajr, sunrise, dhuhr, asr, maghrib, isha')
+    .eq('location_id', id)
+    .in('date', dbDates)
+  const byDate = new Map()
+  for (const row of data || []) byDate.set(row.date, row)
+
+  const calc = new CalculatedPrayerTime(attribute)
+  return dates.map((date) => {
+    const row = byDate.get(toDbDate(date))
+    let prayer = row ? adjustDst(rowToPrayer(row, date)) : calc.getPrayerTimes(location, date)
+    return { date, prayer: prayer ? applyOffset(prayer, attribute.offset) : null }
+  })
 }

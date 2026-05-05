@@ -3,8 +3,14 @@
   inset: 0;
   z-index: 40;
   pointer-events: none;
+  visibility: hidden;
+  transition: visibility 0s linear var(--duration);
 }
-.mp-sheet.is-open { pointer-events: auto; }
+.mp-sheet.is-open {
+  pointer-events: auto;
+  visibility: visible;
+  transition: visibility 0s linear 0s;
+}
 
 .mp-sheet-scrim {
   position: absolute;

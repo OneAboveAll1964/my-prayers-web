@@ -4,21 +4,32 @@ import { PageHeader } from '../components/Layout/PageHeader'
 import { Spinner } from '../components/ui/Spinner'
 import { CategoryTile } from '../components/Azkars/CategoryTile'
 import { ChapterRow } from '../components/AzkarChapters/ChapterRow'
-import { getAzkarCategories, getAzkarChapters } from '../lib/repositories/hisnulMuslimRepository'
+import {
+  getAzkarCategories,
+  getAzkarCategoriesCached,
+  getAzkarChapters,
+  getAzkarChaptersCached,
+} from '../lib/repositories/hisnulMuslimRepository'
 import { useFavorites } from '../store/favorites'
 
 export default function Azkars() {
   const { t, i18n } = useTranslation()
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState(() => getAzkarCategoriesCached(i18n.language) || [])
   const [favoriteChapters, setFavoriteChapters] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(() => !getAzkarCategoriesCached(i18n.language))
   const fav = useFavorites()
 
   useEffect(() => {
     let cancelled = false
     queueMicrotask(() => {
       if (cancelled) return
-      setLoading(true)
+      const cached = getAzkarCategoriesCached(i18n.language)
+      if (cached) {
+        setItems(cached)
+        setLoading(false)
+      } else {
+        setLoading(true)
+      }
       getAzkarCategories(i18n.language).then((data) => {
         if (!cancelled) {
           setItems(data)
@@ -38,6 +49,11 @@ export default function Azkars() {
       if (!fav.chapters.length) {
         setFavoriteChapters([])
         return
+      }
+      const cached = getAzkarChaptersCached({ language: i18n.language })
+      if (cached) {
+        const set = new Set(fav.chapters)
+        setFavoriteChapters(cached.filter((c) => set.has(c.id)))
       }
       getAzkarChapters({ language: i18n.language }).then((all) => {
         if (cancelled) return
