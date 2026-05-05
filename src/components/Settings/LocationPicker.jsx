@@ -5,6 +5,7 @@ import { LocateFixed, Search } from 'lucide-react'
 import { TextInput } from '../ui/Field'
 import { Button } from '../ui/Button'
 import { Spinner } from '../ui/Spinner'
+import { LocationRow } from './LocationRow'
 import { searchLocations, reverseGeocoder } from '../../lib/repositories/locationRepository'
 import { setSettings } from '../../store/settings'
 import { pushRecentLocation, useFavorites } from '../../store/favorites'
@@ -85,16 +86,7 @@ export function LocationPicker() {
           <span className="muted small">{t('favorites.recentLocations')}</span>
           <div className="surface" style={{ overflow: 'hidden' }}>
             {fav.recentLocations.map((loc) => (
-              <button
-                key={`r-${loc.id}`}
-                type="button"
-                className="mp-set-row t-press"
-                style={{ width: '100%', textAlign: 'start' }}
-                onClick={() => pick(loc)}
-              >
-                <span className="mp-set-label">{loc.name}</span>
-                <span className="subtle small">{loc.countryName || loc.countryCode}</span>
-              </button>
+              <LocationRow key={`r-${loc.id}`} location={loc} onPick={pick} />
             ))}
           </div>
         </div>
@@ -107,16 +99,7 @@ export function LocationPicker() {
       ) : query.trim() ? (
         <div className="surface" style={{ overflow: 'hidden' }}>
           {results.map((loc) => (
-            <button
-              key={loc.id}
-              type="button"
-              className="mp-set-row t-press"
-              style={{ width: '100%', textAlign: 'start' }}
-              onClick={() => pick(loc)}
-            >
-              <span className="mp-set-label">{loc.name}</span>
-              <span className="subtle small">{loc.countryName || loc.countryCode}</span>
-            </button>
+            <LocationRow key={loc.id} location={loc} onPick={pick} />
           ))}
           {!results.length && query.length >= 2 ? (
             <p className="muted" style={{ padding: 16 }}>

@@ -1,0 +1,39 @@
+.mp-loc-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  width: 100%;
+  text-align: start;
+  background: var(--surface);
+  color: var(--text);
+  transition: background var(--duration-fast) var(--ease);
+}
+.mp-loc-row + .mp-loc-row { border-top: 1px solid var(--line); }
+.mp-loc-row:active { background: var(--surface-2); }
+
+.mp-loc-pin {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--surface-2);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.mp-loc-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.mp-loc-name {
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.mp-loc-country { font-size: 13px; color: var(--text-muted); }

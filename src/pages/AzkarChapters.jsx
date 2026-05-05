@@ -54,21 +54,27 @@ export default function AzkarChapters() {
     }
   }, [query, i18n.language])
 
+  const searchSlot = (
+    <label className="mp-search">
+      <Search size={16} aria-hidden="true" />
+      <TextInput
+        placeholder={t('azkars.search')}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        style={{ height: 40, border: 'none', background: 'transparent', padding: 0 }}
+      />
+    </label>
+  )
+
   return (
     <section className="page">
-      <PageHeader title={categoryName || t('azkars.title')} subtitle={`${chapters.length} ${t('azkars.chapters')}`} back />
+      <PageHeader
+        title={categoryName || t('azkars.title')}
+        subtitle={`${chapters.length} ${t('azkars.chapters')}`}
+        back
+        search={searchSlot}
+      />
       <div className="page-body">
-        <div className="mp-sticky">
-          <label className="mp-search">
-            <Search size={16} aria-hidden="true" />
-            <TextInput
-              placeholder={t('azkars.search')}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              style={{ height: 40, border: 'none', background: 'transparent', padding: 0 }}
-            />
-          </label>
-        </div>
         {loading ? (
           <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
             <Spinner />

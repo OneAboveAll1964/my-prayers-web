@@ -6,10 +6,10 @@ import {
   Compass,
   BookHeart,
   BookMarked,
-  Sparkles,
   CircleDot,
   Settings as SettingsIcon,
 } from 'lucide-react'
+import { IconNinetyNine } from '../ui/IconNinetyNine'
 import './Sidebar.css'
 
 const ITEMS = [
@@ -17,7 +17,7 @@ const ITEMS = [
   { to: '/calendar', label: 'calendar', Icon: CalendarDays },
   { to: '/qibla', label: 'qibla', Icon: Compass },
   { to: '/azkars', label: 'azkars', Icon: BookHeart },
-  { to: '/names', label: 'names', Icon: Sparkles },
+  { to: '/names', label: 'names', Icon: IconNinetyNine },
   { to: '/quran', label: 'quran', Icon: BookMarked },
   { to: '/tasbih', label: 'tasbih', Icon: CircleDot },
   { to: '/settings', label: 'settings', Icon: SettingsIcon },

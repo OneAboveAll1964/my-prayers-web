@@ -45,21 +45,22 @@ export default function Quran() {
 
   const showSections = !query && (fav.lastSurah || bookmarked.length > 0)
 
+  const searchSlot = (
+    <label className="mp-search">
+      <Search size={16} aria-hidden="true" />
+      <TextInput
+        placeholder={t('quran.search')}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        style={{ height: 40, border: 'none', background: 'transparent', padding: 0 }}
+      />
+    </label>
+  )
+
   return (
     <section className="page">
-      <PageHeader title={t('quran.title')} />
+      <PageHeader title={t('quran.title')} search={searchSlot} />
       <div className="page-body">
-        <div className="mp-sticky">
-          <label className="mp-search">
-            <Search size={16} aria-hidden="true" />
-            <TextInput
-              placeholder={t('quran.search')}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              style={{ height: 40, border: 'none', background: 'transparent', padding: 0 }}
-            />
-          </label>
-        </div>
         {loading ? (
           <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
             <Spinner />
