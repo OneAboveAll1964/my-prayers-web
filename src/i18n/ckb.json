@@ -1,0 +1,116 @@
+{
+  "appName": "نوێژەکانم",
+  "nav": {
+    "home": "سەرەکی",
+    "calendar": "ساڵنامە",
+    "qibla": "قیبلە",
+    "azkars": "ئەزکار",
+    "names": "ناوەکان",
+    "quran": "قورئان",
+    "settings": "ڕێکخستنەکان"
+  },
+  "prayers": {
+    "fajr": "بەیانی",
+    "sunrise": "ڕۆژهەڵات",
+    "dhuhr": "نیوەڕۆ",
+    "asr": "عەسر",
+    "maghrib": "مەغریب",
+    "isha": "عەشا"
+  },
+  "home": {
+    "next": "داهاتوو",
+    "in": "لە",
+    "remaining": "ماوە",
+    "today": "ئەمڕۆ",
+    "tomorrow": "سبەی",
+    "yesterday": "دوێنێ",
+    "noLocation": "شوێنی خۆت دیاری بکە بۆ بینینی کاتی نوێژەکان",
+    "useMyLocation": "شوێنی خۆم بەکاربهێنە",
+    "searchCity": "بەدوای شار بگەڕێ"
+  },
+  "calendar": {
+    "title": "ساڵنامە",
+    "month": "مانگ",
+    "year": "ساڵ",
+    "loading": "بارکردن…"
+  },
+  "qibla": {
+    "title": "قیبلە",
+    "bearing": "ئاراستە",
+    "distance": "دوری بۆ کەعبە",
+    "calibrate": "مۆبایلەکەت بە شێوەی ٨ بجوڵێنە بۆ ڕێکخستن",
+    "noCompass": "قطب نما بەردەست نییە — ئاراستەکە بە جێگیری دەردەکەوێ",
+    "enable": "چالاککردنی قطب نما"
+  },
+  "azkars": {
+    "title": "ئەزکار",
+    "search": "گەڕان لە ئەزکار",
+    "items": "ئایتم",
+    "chapters": "بەش",
+    "count": "ژمارە",
+    "reference": "سەرچاوە",
+    "transliteration": "تەلەفز",
+    "translation": "وەرگێڕان",
+    "tap": "بۆ ژمێر کرتە بکە",
+    "reset": "ڕێسێت"
+  },
+  "names": {
+    "title": "ناوە جوانەکانی خودا",
+    "name": "ناو",
+    "translation": "واتا"
+  },
+  "quran": {
+    "title": "قورئانی پیرۆز",
+    "search": "گەڕان بۆ سورە",
+    "ayahs": "ئایە",
+    "meccan": "مەککی",
+    "medinan": "مەدەنی",
+    "loading": "بارکردنی سورە…"
+  },
+  "settings": {
+    "title": "ڕێکخستنەکان",
+    "language": "زمان",
+    "theme": "ڕووکار",
+    "themeAuto": "خۆکار",
+    "themeLight": "ڕووناک",
+    "themeDark": "تاریک",
+    "location": "شوێن",
+    "calculationMethod": "ڕێگای ژمێرکاری",
+    "asrMethod": "ڕێبازی عەسر",
+    "asrShafii": "شافعی",
+    "asrHanafi": "حەنەفی",
+    "higherLatitude": "پانی بەرز",
+    "highLatAngleBased": "بەپێی گۆشە",
+    "highLatMidNight": "نیوەی شەو",
+    "highLatOneSeven": "یەک لە حەوتی شەو",
+    "highLatNone": "هیچ",
+    "offsets": "گۆڕانکاری بۆ هەر نوێژێک (خولەک)",
+    "useFixedTimes": "کاتە جێگیرەکان بەکاربهێنە کاتێک بەردەستن",
+    "customAngles": "گۆشەی تایبەت",
+    "fajrAngle": "گۆشەی بەیانی",
+    "ishaAngle": "گۆشەی عەشا",
+    "save": "پاراستن",
+    "minutes": "خو",
+    "about": "دەربارە",
+    "version": "وەشان"
+  },
+  "calc": {
+    "makkah": "ئوم القورا، مەککە",
+    "mwl": "ڕابەرایەتی جیهانی ئیسلامی",
+    "isna": "کۆمەڵی ئیسلامی ئەمەریکای باکوور",
+    "karachi": "زانکۆی زانستە ئیسلامیەکان، کاراچی",
+    "egypt": "دەزگای گشتی پێوانەی میسر",
+    "jafari": "جەعفەری",
+    "tehran": "زانکۆی تاران",
+    "custom": "تایبەت"
+  },
+  "common": {
+    "back": "گەڕانەوە",
+    "close": "داخستن",
+    "cancel": "هەڵوەشاندنەوە",
+    "loading": "بارکردن",
+    "error": "هەڵەیەک ڕوویدا",
+    "tryAgain": "دووبارە هەوڵبدە",
+    "noResults": "هیچ ئەنجامێک نییە"
+  }
+}

@@ -1,0 +1,23 @@
+.mp-toggle {
+  width: 46px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  position: relative;
+  transition: background var(--duration-fast) var(--ease);
+  flex-shrink: 0;
+}
+.mp-toggle.is-on { background: var(--accent); border-color: var(--accent); }
+.mp-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  inset-inline-start: 2px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--surface);
+  transition: transform var(--duration) var(--ease);
+}
+[dir='ltr'] .mp-toggle.is-on .mp-toggle-thumb { transform: translateX(18px); }
+[dir='rtl'] .mp-toggle.is-on .mp-toggle-thumb { transform: translateX(-18px); }

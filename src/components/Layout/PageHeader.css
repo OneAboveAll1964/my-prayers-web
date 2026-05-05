@@ -1,0 +1,19 @@
+.mp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 8px 14px;
+}
+.mp-header-left { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.mp-header-back { width: 36px; height: 36px; border-radius: 10px; }
+.mp-header-back:active { background: var(--surface-2); }
+.mp-header-titles { min-width: 0; }
+.mp-header-title {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: -0.018em;
+  font-weight: 700;
+  line-height: 1.15;
+}
+.mp-header-sub { margin: 4px 0 0; color: var(--text-muted); font-size: 13.5px; }

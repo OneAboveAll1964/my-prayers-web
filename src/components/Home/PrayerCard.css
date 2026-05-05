@@ -1,0 +1,23 @@
+.mp-prayer-card { padding: 6px 6px; }
+.mp-prayer-list { display: flex; flex-direction: column; }
+.mp-prayer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 10px;
+  transition: background var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
+}
+.mp-prayer-row + .mp-prayer-row { border-top: 1px solid var(--line); border-radius: 0; }
+.mp-prayer-row:first-child { border-top: 0; }
+.mp-prayer-name { font-weight: 600; color: var(--text); font-size: 16px; }
+.mp-prayer-time { font-weight: 600; font-size: 17px; color: var(--text); letter-spacing: -0.01em; }
+
+.mp-prayer-row.is-active {
+  background: var(--accent-soft);
+  border-radius: 10px;
+}
+.mp-prayer-row.is-active + .mp-prayer-row,
+.mp-prayer-row.is-active { border-top-color: transparent; }
+.mp-prayer-row.is-active .mp-prayer-name,
+.mp-prayer-row.is-active .mp-prayer-time { color: var(--accent-strong); }

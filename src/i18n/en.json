@@ -1,0 +1,116 @@
+{
+  "appName": "My Prayers",
+  "nav": {
+    "home": "Home",
+    "calendar": "Calendar",
+    "qibla": "Qibla",
+    "azkars": "Azkars",
+    "names": "Names",
+    "quran": "Quran",
+    "settings": "Settings"
+  },
+  "prayers": {
+    "fajr": "Fajr",
+    "sunrise": "Sunrise",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Isha"
+  },
+  "home": {
+    "next": "Next",
+    "in": "in",
+    "remaining": "remaining",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "yesterday": "Yesterday",
+    "noLocation": "Set your location to see prayer times",
+    "useMyLocation": "Use my location",
+    "searchCity": "Search city"
+  },
+  "calendar": {
+    "title": "Calendar",
+    "month": "Month",
+    "year": "Year",
+    "loading": "Loading times…"
+  },
+  "qibla": {
+    "title": "Qibla",
+    "bearing": "Bearing",
+    "distance": "Distance to Kaaba",
+    "calibrate": "Move your phone in a figure 8 to calibrate",
+    "noCompass": "Compass not available — facing direction shown statically",
+    "enable": "Enable compass"
+  },
+  "azkars": {
+    "title": "Azkars",
+    "search": "Search azkars",
+    "items": "items",
+    "chapters": "chapters",
+    "count": "Count",
+    "reference": "Reference",
+    "transliteration": "Transliteration",
+    "translation": "Translation",
+    "tap": "Tap to count",
+    "reset": "Reset"
+  },
+  "names": {
+    "title": "99 Names of Allah",
+    "name": "Name",
+    "translation": "Translation"
+  },
+  "quran": {
+    "title": "Quran",
+    "search": "Search surah",
+    "ayahs": "ayahs",
+    "meccan": "Meccan",
+    "medinan": "Medinan",
+    "loading": "Loading surah…"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "themeAuto": "Auto",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "location": "Location",
+    "calculationMethod": "Calculation method",
+    "asrMethod": "Asr method",
+    "asrShafii": "Shafi'i",
+    "asrHanafi": "Hanafi",
+    "higherLatitude": "Higher latitude",
+    "highLatAngleBased": "Angle based",
+    "highLatMidNight": "Middle of night",
+    "highLatOneSeven": "1/7th of night",
+    "highLatNone": "None",
+    "offsets": "Per-prayer offset (minutes)",
+    "useFixedTimes": "Use fixed times when available",
+    "customAngles": "Custom angles",
+    "fajrAngle": "Fajr angle",
+    "ishaAngle": "Isha angle",
+    "save": "Save",
+    "minutes": "min",
+    "about": "About",
+    "version": "Version"
+  },
+  "calc": {
+    "makkah": "Umm al-Qura, Makkah",
+    "mwl": "Muslim World League",
+    "isna": "Islamic Society of North America",
+    "karachi": "University of Islamic Sciences, Karachi",
+    "egypt": "Egyptian General Authority",
+    "jafari": "Ithna Ashari (Jafari)",
+    "tehran": "University of Tehran",
+    "custom": "Custom"
+  },
+  "common": {
+    "back": "Back",
+    "close": "Close",
+    "cancel": "Cancel",
+    "loading": "Loading",
+    "error": "Something went wrong",
+    "tryAgain": "Try again",
+    "noResults": "No results"
+  }
+}

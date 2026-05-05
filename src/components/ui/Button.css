@@ -1,0 +1,43 @@
+.mp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.mp-btn-md { height: 44px; padding-inline: 18px; font-size: 15px; }
+.mp-btn-sm { height: 36px; padding-inline: 14px; font-size: 13.5px; }
+.mp-btn-lg { height: 52px; padding-inline: 22px; font-size: 16px; }
+
+.mp-btn-solid { background: var(--accent); color: var(--accent-on); }
+.mp-btn-solid:active { background: var(--accent-strong); }
+.mp-btn-solid:disabled { background: var(--surface-3); color: var(--text-subtle); }
+
+.mp-btn-outline {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+.mp-btn-outline:active { background: var(--surface-2); }
+
+.mp-btn-ghost { background: transparent; color: var(--text); }
+.mp-btn-ghost:active { background: var(--surface-2); }
+
+.mp-btn-soft {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+.mp-btn-soft:active { background: var(--surface-2); }
+
+.mp-btn-danger {
+  background: transparent;
+  color: var(--danger);
+  border-color: var(--line);
+}
+.mp-btn-danger:active { background: var(--surface-2); }

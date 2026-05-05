@@ -1,0 +1,212 @@
+@import '@fontsource-variable/inter/index.css';
+@import '@fontsource/noto-sans-arabic/400.css';
+@import '@fontsource/noto-sans-arabic/500.css';
+@import '@fontsource/noto-sans-arabic/600.css';
+@import '@fontsource/noto-sans-arabic/700.css';
+@import '@fontsource/noto-naskh-arabic/400.css';
+@import '@fontsource/noto-naskh-arabic/700.css';
+@import '@fontsource/noto-kufi-arabic/400.css';
+@import '@fontsource/noto-kufi-arabic/600.css';
+@import '@fontsource/noto-kufi-arabic/700.css';
+
+:root {
+  color-scheme: light dark;
+
+  --accent: #1f8a4c;
+  --accent-strong: #186b3b;
+  --accent-soft: #e6f3ec;
+  --accent-on: #ffffff;
+
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --surface-2: #f3f3f1;
+  --surface-3: #e8e8e4;
+  --line: #e6e6e1;
+  --line-strong: #d2d2cc;
+
+  --text: #15171a;
+  --text-muted: #5a5f66;
+  --text-subtle: #898e95;
+
+  --danger: #b13b3b;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+
+  --tab-bar-h: 64px;
+  --header-h: 56px;
+  --container: 760px;
+
+  --duration-fast: 120ms;
+  --duration: 200ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --font-sans: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-arabic: 'Noto Naskh Arabic', 'Noto Sans Arabic', 'Noto Kufi Arabic', serif;
+  --font-kurdish: 'Noto Kufi Arabic', 'Noto Sans Arabic', sans-serif;
+}
+
+[data-theme='dark'] {
+  --bg: #0e1013;
+  --surface: #16191d;
+  --surface-2: #1c2025;
+  --surface-3: #232830;
+  --line: #232830;
+  --line-strong: #2f353d;
+
+  --text: #f1f3f5;
+  --text-muted: #b6bbc2;
+  --text-subtle: #8a8f96;
+
+  --accent: #34c97a;
+  --accent-strong: #2bb96d;
+  --accent-soft: #173626;
+  --accent-on: #0e1013;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15.5px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html[dir='rtl'][lang^='ar'] body { font-family: var(--font-arabic); }
+html[dir='rtl'][lang^='ckb'] body { font-family: var(--font-kurdish); }
+
+html, body { min-height: 100%; }
+
+button { font: inherit; color: inherit; background: transparent; border: none; padding: 0; cursor: pointer; }
+input, select, textarea { font: inherit; color: inherit; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; padding: 0; margin: 0; }
+
+::selection { background: var(--accent-soft); color: var(--text); }
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}
+
+.app {
+  min-height: 100dvh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 18px;
+}
+
+.page {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  padding-block: 12px 16px;
+}
+.page-body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.stack { display: flex; flex-direction: column; gap: 12px; }
+.stack-sm { display: flex; flex-direction: column; gap: 6px; }
+.grow { flex: 1 1 auto; }
+
+.muted { color: var(--text-muted); }
+.subtle { color: var(--text-subtle); }
+.small { font-size: 13px; }
+.tabular { font-variant-numeric: tabular-nums; }
+
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.surface-2 {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.divider { height: 1px; background: var(--line); }
+
+/* Tap target */
+.tap {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Safe areas for iOS */
+@supports (padding: max(0px)) {
+  .safe-bottom { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+  .safe-top { padding-top: max(12px, env(safe-area-inset-top)); }
+}
+
+/* Animations: subtle, snappy */
+@keyframes mp-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.fade-in {
+  animation: mp-fade-in var(--duration) var(--ease);
+}
+
+@keyframes mp-spin { to { transform: rotate(360deg); } }
+.spin { animation: mp-spin 800ms linear infinite; }
+
+@keyframes mp-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+.pulse { animation: mp-pulse 1.6s ease-in-out infinite; }
+
+/* Transitions */
+.t-press {
+  transition: background-color var(--duration-fast) var(--ease),
+              border-color var(--duration-fast) var(--ease),
+              color var(--duration-fast) var(--ease),
+              transform var(--duration-fast) var(--ease);
+}
+.t-press:active { transform: scale(0.985); background: var(--surface-2); }
+
+/* Mobile-first layout */
+.mobile-only { display: initial; }
+.desktop-only { display: none; }
+
+@media (min-width: 900px) {
+  .mobile-only { display: none; }
+  .desktop-only { display: initial; }
+  :root { --container: 980px; }
+}

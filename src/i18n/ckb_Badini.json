@@ -1,0 +1,116 @@
+{
+  "appName": "نڤێژێن من",
+  "nav": {
+    "home": "سەرەکی",
+    "calendar": "ساڵنامە",
+    "qibla": "قیبلە",
+    "azkars": "ئەزکار",
+    "names": "ناڤ",
+    "quran": "قورئان",
+    "settings": "ڕێکخستن"
+  },
+  "prayers": {
+    "fajr": "بەیانی",
+    "sunrise": "ڕۆژهەلات",
+    "dhuhr": "نیڤرۆ",
+    "asr": "عەسر",
+    "maghrib": "ئێڤارێ",
+    "isha": "عشا"
+  },
+  "home": {
+    "next": "بهێ",
+    "in": "د",
+    "remaining": "مایی",
+    "today": "ئەڤرۆ",
+    "tomorrow": "سبە",
+    "yesterday": "دوهی",
+    "noLocation": "جهێ خۆ دیار بکە بۆ دیتنا دەمێن نڤێژان",
+    "useMyLocation": "جهێ من بکار بینە",
+    "searchCity": "ل بازارا گەڕە"
+  },
+  "calendar": {
+    "title": "ساڵنامە",
+    "month": "هەیڤ",
+    "year": "ساڵ",
+    "loading": "بارکرن…"
+  },
+  "qibla": {
+    "title": "قیبلە",
+    "bearing": "ئاراستە",
+    "distance": "دوریا کەعبە",
+    "calibrate": "تەلەفۆنێ خۆ ئاسانگۆ بکە بۆ ڕێکخستنێ",
+    "noCompass": "قطب نما د بەردەست دا نیە",
+    "enable": "قطب نما چالاک بکە"
+  },
+  "azkars": {
+    "title": "ئەزکار",
+    "search": "ل ئەزکار بگەڕە",
+    "items": "ئایتم",
+    "chapters": "بەش",
+    "count": "ژمارە",
+    "reference": "سەرکانی",
+    "transliteration": "تەلەفز",
+    "translation": "وەرگەڕاندن",
+    "tap": "بۆ ژمێر بهەست بکە",
+    "reset": "ڤەگەڕاندن"
+  },
+  "names": {
+    "title": "ناڤێن جوانێ خودا",
+    "name": "ناڤ",
+    "translation": "واتا"
+  },
+  "quran": {
+    "title": "قورئانا پیرۆز",
+    "search": "بۆ سورە بگەڕە",
+    "ayahs": "ئایە",
+    "meccan": "مەککی",
+    "medinan": "مەدەنی",
+    "loading": "بارکرنا سورە…"
+  },
+  "settings": {
+    "title": "ڕێکخستن",
+    "language": "زمان",
+    "theme": "ڕووخسار",
+    "themeAuto": "خۆکار",
+    "themeLight": "ڕوون",
+    "themeDark": "تاری",
+    "location": "جه",
+    "calculationMethod": "ڕێبازا ژمارتنێ",
+    "asrMethod": "ڕێبازا عەسرێ",
+    "asrShafii": "شافعی",
+    "asrHanafi": "حەنەفی",
+    "higherLatitude": "پانیێن بلند",
+    "highLatAngleBased": "ل سەر گۆشە",
+    "highLatMidNight": "نیڤا شەفێ",
+    "highLatOneSeven": "یەک ژ حەفت یێن شەفێ",
+    "highLatNone": "هیچ",
+    "offsets": "گهۆڕان بۆ هەر نڤێژەکێ (خولەک)",
+    "useFixedTimes": "دەمێن سابیت بکار بینە دەمێ هەبن",
+    "customAngles": "گۆشێن تایبەت",
+    "fajrAngle": "گۆشێ بەیانیێ",
+    "ishaAngle": "گۆشێ عشا",
+    "save": "پاراستن",
+    "minutes": "خو",
+    "about": "دەربارە",
+    "version": "گرنگی"
+  },
+  "calc": {
+    "makkah": "ئوم القورا، مەککە",
+    "mwl": "ڕابەری جیهانی ئیسلامی",
+    "isna": "کۆما ئیسلامی ئەمەریکا",
+    "karachi": "زانکۆیا کاراچی",
+    "egypt": "دەزگەها میسری",
+    "jafari": "جەعفەری",
+    "tehran": "زانکۆیا تاران",
+    "custom": "تایبەت"
+  },
+  "common": {
+    "back": "ڤەگەڕان",
+    "close": "گرتن",
+    "cancel": "هەلوەشاندن",
+    "loading": "بارکرن",
+    "error": "هەلەیەک پەیدابوو",
+    "tryAgain": "دیسا هەول بدە",
+    "noResults": "هیچ ئەنجام نینن"
+  }
+}

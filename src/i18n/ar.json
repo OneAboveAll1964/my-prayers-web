@@ -1,0 +1,116 @@
+{
+  "appName": "صلواتي",
+  "nav": {
+    "home": "الرئيسية",
+    "calendar": "التقويم",
+    "qibla": "القبلة",
+    "azkars": "الأذكار",
+    "names": "الأسماء",
+    "quran": "القرآن",
+    "settings": "الإعدادات"
+  },
+  "prayers": {
+    "fajr": "الفجر",
+    "sunrise": "الشروق",
+    "dhuhr": "الظهر",
+    "asr": "العصر",
+    "maghrib": "المغرب",
+    "isha": "العشاء"
+  },
+  "home": {
+    "next": "القادم",
+    "in": "خلال",
+    "remaining": "متبقي",
+    "today": "اليوم",
+    "tomorrow": "غداً",
+    "yesterday": "أمس",
+    "noLocation": "حدد موقعك لعرض أوقات الصلاة",
+    "useMyLocation": "استخدم موقعي",
+    "searchCity": "ابحث عن مدينة"
+  },
+  "calendar": {
+    "title": "التقويم",
+    "month": "الشهر",
+    "year": "السنة",
+    "loading": "جاري التحميل…"
+  },
+  "qibla": {
+    "title": "القبلة",
+    "bearing": "الاتجاه",
+    "distance": "المسافة إلى الكعبة",
+    "calibrate": "حرّك هاتفك على شكل ٨ للمعايرة",
+    "noCompass": "البوصلة غير متاحة — يُعرض الاتجاه ثابتاً",
+    "enable": "تفعيل البوصلة"
+  },
+  "azkars": {
+    "title": "الأذكار",
+    "search": "ابحث في الأذكار",
+    "items": "ذكر",
+    "chapters": "باب",
+    "count": "العدد",
+    "reference": "المرجع",
+    "transliteration": "النطق",
+    "translation": "الترجمة",
+    "tap": "اضغط للعد",
+    "reset": "إعادة"
+  },
+  "names": {
+    "title": "أسماء الله الحسنى",
+    "name": "الاسم",
+    "translation": "المعنى"
+  },
+  "quran": {
+    "title": "القرآن الكريم",
+    "search": "ابحث عن سورة",
+    "ayahs": "آية",
+    "meccan": "مكية",
+    "medinan": "مدنية",
+    "loading": "جاري تحميل السورة…"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "language": "اللغة",
+    "theme": "السمة",
+    "themeAuto": "تلقائي",
+    "themeLight": "فاتح",
+    "themeDark": "داكن",
+    "location": "الموقع",
+    "calculationMethod": "طريقة الحساب",
+    "asrMethod": "مذهب العصر",
+    "asrShafii": "شافعي",
+    "asrHanafi": "حنفي",
+    "higherLatitude": "خطوط العرض العالية",
+    "highLatAngleBased": "حسب الزاوية",
+    "highLatMidNight": "منتصف الليل",
+    "highLatOneSeven": "سُبع الليل",
+    "highLatNone": "بدون",
+    "offsets": "تعديل أوقات الصلاة (دقائق)",
+    "useFixedTimes": "استخدم الأوقات الثابتة عند توفرها",
+    "customAngles": "زوايا مخصصة",
+    "fajrAngle": "زاوية الفجر",
+    "ishaAngle": "زاوية العشاء",
+    "save": "حفظ",
+    "minutes": "د",
+    "about": "حول التطبيق",
+    "version": "الإصدار"
+  },
+  "calc": {
+    "makkah": "أم القرى، مكة",
+    "mwl": "رابطة العالم الإسلامي",
+    "isna": "الجمعية الإسلامية لأمريكا الشمالية",
+    "karachi": "جامعة العلوم الإسلامية، كراتشي",
+    "egypt": "الهيئة المصرية العامة للمساحة",
+    "jafari": "الاثنا عشرية (جعفري)",
+    "tehran": "جامعة طهران",
+    "custom": "مخصص"
+  },
+  "common": {
+    "back": "رجوع",
+    "close": "إغلاق",
+    "cancel": "إلغاء",
+    "loading": "جاري التحميل",
+    "error": "حدث خطأ ما",
+    "tryAgain": "حاول مجدداً",
+    "noResults": "لا توجد نتائج"
+  }
+}

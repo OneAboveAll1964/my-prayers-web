@@ -1,0 +1,22 @@
+.mp-seg {
+  display: inline-flex;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+.mp-seg-item {
+  height: 32px;
+  padding-inline: 14px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: background var(--duration-fast) var(--ease), color var(--duration-fast) var(--ease);
+}
+.mp-seg-item.is-active {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line-strong);
+}

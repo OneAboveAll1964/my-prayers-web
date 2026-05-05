@@ -27,3 +27,5 @@ scripts/.cache
 package-lock.json
 yarn.lock
 .env.example
+supabase/schema.sql
+scripts/migrate-supabase.mjs

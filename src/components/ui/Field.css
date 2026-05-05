@@ -1,0 +1,46 @@
+.mp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mp-field-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.mp-field-hint {
+  font-size: 12.5px;
+  color: var(--text-subtle);
+}
+
+.mp-input,
+.mp-select {
+  appearance: none;
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+  transition: border-color var(--duration-fast) var(--ease);
+}
+.mp-input:focus, .mp-select:focus { border-color: var(--accent); }
+
+.mp-select-wrap {
+  position: relative;
+}
+.mp-select-wrap::after {
+  content: '';
+  position: absolute;
+  inset-inline-end: 14px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-inline-end: 1.6px solid var(--text-muted);
+  border-bottom: 1.6px solid var(--text-muted);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
