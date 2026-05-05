@@ -1,0 +1,10 @@
+.mp-datebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  font-weight: 500;
+}
+.mp-datebar-dot { color: var(--text-subtle); }
+.mp-datebar-hijri { color: var(--text-muted); }

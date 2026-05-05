@@ -1,0 +1,23 @@
+.mp-offsets { overflow: hidden; }
+.mp-offset-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+}
+.mp-offset-row + .mp-offset-row { border-top: 1px solid var(--line); }
+.mp-offset-name { font-weight: 500; }
+.mp-offset-controls { display: inline-flex; align-items: center; gap: 8px; }
+.mp-offset-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.mp-offset-btn:active { background: var(--surface-3); }
+.mp-offset-value { min-width: 64px; text-align: center; font-weight: 600; font-size: 13.5px; }

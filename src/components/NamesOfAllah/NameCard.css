@@ -1,0 +1,35 @@
+.mp-name {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  min-height: 168px;
+}
+.mp-name-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.mp-name-arabic {
+  font-family: var(--font-arabic);
+  font-size: 28px;
+  margin: 4px 0;
+  font-weight: 700;
+  color: var(--text);
+  direction: rtl;
+}
+.mp-name-translit {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+.mp-name-translation { margin: 0; font-size: 13.5px; color: var(--text); line-height: 1.5; }

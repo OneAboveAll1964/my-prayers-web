@@ -1,0 +1,12 @@
+.mp-cat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+}
+.mp-cat-name { font-weight: 600; font-size: 15.5px; }

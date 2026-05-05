@@ -205,6 +205,19 @@ ul, ol { list-style: none; padding: 0; margin: 0; }
 .mobile-only { display: initial; }
 .desktop-only { display: none; }
 
+.mp-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--text-muted);
+}
+.mp-search input { background: transparent; }
+.mp-search input::placeholder { color: var(--text-subtle); }
+
 @media (min-width: 900px) {
   .mobile-only { display: none; }
   .desktop-only { display: initial; }

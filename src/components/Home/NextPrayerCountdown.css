@@ -1,0 +1,18 @@
+.mp-next {
+  background: var(--accent);
+  color: var(--accent-on);
+  border-color: var(--accent);
+  padding: 18px 20px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mp-next-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.mp-next-label { font-size: 13px; font-weight: 600; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.06em; }
+.mp-next-name { font-size: 17px; font-weight: 700; }
+.mp-next-time { align-items: flex-end; }
+.mp-next-remain { font-size: clamp(36px, 9vw, 48px); font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+.mp-next-at { font-size: 14px; font-weight: 600; opacity: 0.85; }
+
+[data-theme='dark'] .mp-next { color: #0e1013; }

@@ -1,0 +1,13 @@
+.mp-chapter-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--surface);
+  color: var(--text);
+  transition: background var(--duration-fast) var(--ease);
+}
+.mp-chapter-row + .mp-chapter-row { border-top: 1px solid var(--line); }
+.mp-chapter-row:active { background: var(--surface-2); }
+.mp-chapter-name { font-weight: 500; font-size: 15px; }

@@ -1,0 +1,14 @@
+.mp-set-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--surface);
+  color: var(--text);
+}
+.mp-set-row + .mp-set-row { border-top: 1px solid var(--line); }
+.mp-set-row:active { background: var(--surface-2); }
+.mp-set-label { font-weight: 500; font-size: 15px; }
+.mp-set-trail { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.mp-set-value { font-size: 13.5px; max-width: 50vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
