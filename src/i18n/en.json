@@ -7,7 +7,24 @@
     "azkars": "Azkars",
     "names": "Names",
     "quran": "Quran",
-    "settings": "Settings"
+    "settings": "Settings",
+    "tasbih": "Tasbih"
+  },
+  "favorites": {
+    "title": "Favorites",
+    "empty": "Star a chapter to keep it here",
+    "emptySurah": "Bookmark a surah to keep it here",
+    "lastRead": "Continue reading",
+    "recentLocations": "Recent",
+    "bookmarked": "Bookmarked",
+    "starred": "Starred"
+  },
+  "tasbih": {
+    "title": "Tasbih",
+    "tap": "Tap to count",
+    "reset": "Reset",
+    "total": "Total",
+    "target": "Target"
   },
   "prayers": {
     "fajr": "Fajr",

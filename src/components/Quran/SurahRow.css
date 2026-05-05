@@ -1,15 +1,34 @@
 .mp-surah-row {
+  display: flex;
+  align-items: stretch;
+  background: var(--surface);
+}
+.mp-surah-row + .mp-surah-row { border-top: 1px solid var(--line); }
+
+.mp-surah-link {
+  flex: 1 1 auto;
   display: grid;
   grid-template-columns: 36px 1fr auto;
   align-items: center;
   gap: 14px;
-  padding: 14px 16px;
-  background: var(--surface);
+  padding: 14px 12px 14px 16px;
   color: var(--text);
   transition: background var(--duration-fast) var(--ease);
+  min-width: 0;
 }
-.mp-surah-row + .mp-surah-row { border-top: 1px solid var(--line); }
-.mp-surah-row:active { background: var(--surface-2); }
+.mp-surah-link:active { background: var(--surface-2); }
+
+.mp-surah-bm {
+  width: 44px;
+  margin-inline-end: 8px;
+  border-radius: 999px;
+  color: var(--text-subtle);
+  transition:
+    color var(--duration-fast) var(--ease),
+    background var(--duration-fast) var(--ease);
+}
+.mp-surah-bm.is-on { color: var(--accent); }
+.mp-surah-bm:active { background: var(--surface-2); }
 
 .mp-surah-num {
   width: 32px;
@@ -24,6 +43,12 @@
   font-weight: 700;
 }
 .mp-surah-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.mp-surah-name { font-weight: 600; font-size: 15px; }
+.mp-surah-name {
+  font-weight: 600;
+  font-size: 15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .mp-surah-meta { color: var(--text-muted); }
 .mp-surah-arabic { font-family: var(--font-arabic); font-size: 19px; color: var(--text); }

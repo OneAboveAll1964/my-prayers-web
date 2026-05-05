@@ -20,6 +20,13 @@ if (!existsSync(SQLITE_DB)) {
   process.exit(1)
 }
 
+const blank = (v) => (v == null || v === '' ? null : v)
+const numOrNull = (v) => {
+  if (v == null || v === '') return null
+  const n = typeof v === 'number' ? v : Number(v)
+  return Number.isFinite(n) ? n : null
+}
+
 const CACHE_DIR = resolve(ROOT, 'scripts', '.cache')
 mkdirSync(CACHE_DIR, { recursive: true })
 
@@ -76,11 +83,13 @@ const order = [
   ['azkar_category_translation', 500,  r => ({ id: r._id, category_id: r.category_id, language: r.language, category_name: r.category_name })],
   ['azkar_chapter',              500,  r => ({ id: r._id, category_id: r.category_id })],
   ['azkar_chapter_translation',  500,  r => ({ id: r._id, chapter_id: r.chapter_id, language: r.language, chapter_name: r.chapter_name })],
-  ['azkar_item',                 500,  r => ({ id: r._id, chapter_id: r.chapter_id, item: r.item ?? null, transliteration: r.transliteration ?? null, count: r.count ?? null })],
-  ['azkar_item_translation',     500,  r => ({ id: r._id, item_id: r.item_id, language: r.language, top_note: r.top_note ?? null, item_translation: r.item_translation ?? null, bottom_note: r.bottom_note != null ? String(r.bottom_note) : null, reference: r.reference != null ? String(r.reference) : '' })],
+  ['azkar_item',                 500,  r => ({ id: r._id, chapter_id: r.chapter_id, item: blank(r.item), transliteration: blank(r.transliteration), count: numOrNull(r.count) })],
+  ['azkar_item_translation',     500,  r => ({ id: r._id, item_id: r.item_id, language: r.language, top_note: blank(r.top_note), item_translation: blank(r.item_translation), bottom_note: r.bottom_note != null && r.bottom_note !== '' ? String(r.bottom_note) : null, reference: r.reference != null ? String(r.reference) : '' })],
 ]
 
+const only = process.env.ONLY ? new Set(process.env.ONLY.split(',')) : null
 for (const [table, chunkSize, map, sourceTable] of order) {
+  if (only && !only.has(table)) continue
   console.log(`\n→ ${table}`)
   const rows = dumpTable(sourceTable || table, map)
   await uploadAll(table, rows, chunkSize)

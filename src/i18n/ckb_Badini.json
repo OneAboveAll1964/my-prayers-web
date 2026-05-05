@@ -7,7 +7,24 @@
     "azkars": "ئەزکار",
     "names": "ناڤ",
     "quran": "قورئان",
-    "settings": "ڕێکخستن"
+    "settings": "ڕێکخستن",
+    "tasbih": "تەسبیح"
+  },
+  "favorites": {
+    "title": "هەلبژارتی",
+    "empty": "ستێرکێ ل بەشەکێ دانە بۆ ڤێرێ بمینیت",
+    "emptySurah": "نیشانێ ل سورەیێ دانە",
+    "lastRead": "بەردەوام بکە",
+    "recentLocations": "نوویکێ",
+    "bookmarked": "نیشانکری",
+    "starred": "ستێرکری"
+  },
+  "tasbih": {
+    "title": "تەسبیح",
+    "tap": "بۆ ژمێر بهەست بکە",
+    "reset": "ڤەگەڕاندن",
+    "total": "تەواوی",
+    "target": "ئارمانج"
   },
   "prayers": {
     "fajr": "بەیانی",

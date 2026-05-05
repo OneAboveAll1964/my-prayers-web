@@ -4,10 +4,11 @@ import {
   Home,
   CalendarDays,
   Compass,
-  BookOpen,
+  BookHeart,
+  BookMarked,
   Sparkles,
+  CircleDot,
   Settings as SettingsIcon,
-  Stars,
 } from 'lucide-react'
 import './Sidebar.css'
 
@@ -15,16 +16,17 @@ const ITEMS = [
   { to: '/', label: 'home', Icon: Home, end: true },
   { to: '/calendar', label: 'calendar', Icon: CalendarDays },
   { to: '/qibla', label: 'qibla', Icon: Compass },
-  { to: '/azkars', label: 'azkars', Icon: BookOpen },
-  { to: '/names', label: 'names', Icon: Stars },
-  { to: '/quran', label: 'quran', Icon: Sparkles },
+  { to: '/azkars', label: 'azkars', Icon: BookHeart },
+  { to: '/names', label: 'names', Icon: Sparkles },
+  { to: '/quran', label: 'quran', Icon: BookMarked },
+  { to: '/tasbih', label: 'tasbih', Icon: CircleDot },
   { to: '/settings', label: 'settings', Icon: SettingsIcon },
 ]
 
 export function Sidebar() {
   const { t } = useTranslation()
   return (
-    <aside className="mp-side desktop-only" aria-label="Primary">
+    <aside className="mp-side" aria-label="Primary">
       <div className="mp-side-brand">
         <span className="mp-side-mark" aria-hidden="true" />
         <span className="mp-side-title">{t('appName')}</span>

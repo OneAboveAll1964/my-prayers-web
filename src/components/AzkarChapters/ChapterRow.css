@@ -1,13 +1,31 @@
 .mp-chapter-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 16px;
+  gap: 4px;
   background: var(--surface);
   color: var(--text);
-  transition: background var(--duration-fast) var(--ease);
 }
 .mp-chapter-row + .mp-chapter-row { border-top: 1px solid var(--line); }
-.mp-chapter-row:active { background: var(--surface-2); }
+
+.mp-chapter-star {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  margin-inline-start: 8px;
+  color: var(--text-subtle);
+  transition: color var(--duration-fast) var(--ease), background var(--duration-fast) var(--ease);
+}
+.mp-chapter-star:active { background: var(--surface-2); }
+.mp-chapter-star.is-on { color: var(--accent); }
+
+.mp-chapter-link {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px 14px 8px;
+  color: var(--text);
+}
+.mp-chapter-link:active { background: var(--surface-2); }
 .mp-chapter-name { font-weight: 500; font-size: 15px; }

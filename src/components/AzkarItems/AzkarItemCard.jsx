@@ -11,7 +11,7 @@ export function AzkarItemCard({ item, index }) {
     <article className="mp-azkar surface fade-in">
       <header className="mp-azkar-head">
         <span className="mp-azkar-num">{index}</span>
-        {item.count ? <Counter target={item.count} /> : <span />}
+        <Counter target={item.count || 0} itemId={item.id} />
       </header>
 
       {item.topNote ? <p className="mp-azkar-note">{item.topNote}</p> : null}

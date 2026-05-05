@@ -10,6 +10,9 @@
   height: calc(var(--tab-bar-h) + env(safe-area-inset-bottom, 0px));
   padding-bottom: env(safe-area-inset-bottom, 0px);
 }
+@media (min-width: 900px) {
+  .mp-tabbar { display: none; }
+}
 .mp-tab {
   display: flex;
   align-items: stretch;

@@ -7,7 +7,24 @@
     "azkars": "الأذكار",
     "names": "الأسماء",
     "quran": "القرآن",
-    "settings": "الإعدادات"
+    "settings": "الإعدادات",
+    "tasbih": "التسبيح"
+  },
+  "favorites": {
+    "title": "المفضلة",
+    "empty": "ضع نجمة على باب لإضافته هنا",
+    "emptySurah": "ضع علامة على سورة لإضافتها هنا",
+    "lastRead": "تابع القراءة",
+    "recentLocations": "الحديثة",
+    "bookmarked": "محفوظ",
+    "starred": "بنجمة"
+  },
+  "tasbih": {
+    "title": "التسبيح",
+    "tap": "اضغط للعد",
+    "reset": "إعادة",
+    "total": "الإجمالي",
+    "target": "الهدف"
   },
   "prayers": {
     "fajr": "الفجر",
