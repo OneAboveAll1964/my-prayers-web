@@ -15,6 +15,7 @@ const AzkarItems = lazy(() => import('./pages/AzkarItems'))
 const NamesOfAllah = lazy(() => import('./pages/NamesOfAllah'))
 const Quran = lazy(() => import('./pages/Quran'))
 const Surah = lazy(() => import('./pages/Surah'))
+const Tasbih = lazy(() => import('./pages/Tasbih'))
 const Settings = lazy(() => import('./pages/Settings'))
 const SettingsLanguage = lazy(() => import('./pages/SettingsLanguage'))
 const SettingsLocation = lazy(() => import('./pages/SettingsLocation'))
@@ -57,6 +58,7 @@ export default function App() {
             <Route path="names" element={<NamesOfAllah />} />
             <Route path="quran" element={<Quran />} />
             <Route path="quran/:number" element={<Surah />} />
+            <Route path="tasbih" element={<Tasbih />} />
             <Route path="settings" element={<Settings />} />
             <Route path="settings/language" element={<SettingsLanguage />} />
             <Route path="settings/location" element={<SettingsLocation />} />

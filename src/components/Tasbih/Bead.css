@@ -1,0 +1,25 @@
+.mp-bead {
+  width: min(72vw, 280px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-on);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border: 6px solid var(--accent-strong);
+  transition: transform var(--duration-fast) var(--ease), background var(--duration-fast) var(--ease);
+  user-select: none;
+}
+.mp-bead:active { transform: scale(0.96); background: var(--accent-strong); }
+.mp-bead-count {
+  font-size: clamp(56px, 18vw, 92px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.mp-bead-target { font-size: 16px; opacity: 0.85; font-weight: 600; }
+
+[data-theme='dark'] .mp-bead { color: #0e1013; }

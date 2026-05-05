@@ -3,7 +3,16 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding-block: 8px 14px;
+  padding-block: 10px 12px;
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid transparent;
+}
+.mp-header.is-stuck { border-bottom-color: var(--line); }
+@media (min-width: 900px) {
+  .mp-header { position: static; }
 }
 .mp-header-left { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .mp-header-back { width: 36px; height: 36px; border-radius: 10px; }

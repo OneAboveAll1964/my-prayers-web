@@ -3,12 +3,16 @@ import { useTranslation } from 'react-i18next'
 import { PageHeader } from '../components/Layout/PageHeader'
 import { Spinner } from '../components/ui/Spinner'
 import { CategoryTile } from '../components/Azkars/CategoryTile'
-import { getAzkarCategories } from '../lib/repositories/hisnulMuslimRepository'
+import { ChapterRow } from '../components/AzkarChapters/ChapterRow'
+import { getAzkarCategories, getAzkarChapters } from '../lib/repositories/hisnulMuslimRepository'
+import { useFavorites } from '../store/favorites'
 
 export default function Azkars() {
   const { t, i18n } = useTranslation()
   const [items, setItems] = useState([])
+  const [favoriteChapters, setFavoriteChapters] = useState([])
   const [loading, setLoading] = useState(true)
+  const fav = useFavorites()
 
   useEffect(() => {
     let cancelled = false
@@ -27,10 +31,40 @@ export default function Azkars() {
     }
   }, [i18n.language])
 
+  useEffect(() => {
+    let cancelled = false
+    queueMicrotask(() => {
+      if (cancelled) return
+      if (!fav.chapters.length) {
+        setFavoriteChapters([])
+        return
+      }
+      getAzkarChapters({ language: i18n.language }).then((all) => {
+        if (cancelled) return
+        const set = new Set(fav.chapters)
+        setFavoriteChapters(all.filter((c) => set.has(c.id)))
+      })
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [i18n.language, fav.chapters])
+
   return (
     <section className="page">
       <PageHeader title={t('azkars.title')} />
       <div className="page-body">
+        {favoriteChapters.length > 0 ? (
+          <div className="stack-sm">
+            <span className="muted small">{t('favorites.starred')}</span>
+            <div className="surface" style={{ overflow: 'hidden' }}>
+              {favoriteChapters.map((c) => (
+                <ChapterRow key={`fav-${c.id}`} chapter={c} />
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         {loading ? (
           <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
             <Spinner />

@@ -9,7 +9,18 @@
   letter-spacing: -0.005em;
   white-space: nowrap;
   user-select: none;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+.mp-btn > span,
+.mp-btn > * {
+  min-width: 0;
+}
+.mp-btn-block { width: 100%; }
+/* When inside a flex/stack column, fill the row */
+.stack > .mp-btn,
+.stack-sm > .mp-btn { width: 100%; }
 
 .mp-btn-md { height: 44px; padding-inline: 18px; font-size: 15px; }
 .mp-btn-sm { height: 36px; padding-inline: 14px; font-size: 13.5px; }

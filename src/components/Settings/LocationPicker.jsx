@@ -7,10 +7,12 @@ import { Button } from '../ui/Button'
 import { Spinner } from '../ui/Spinner'
 import { searchLocations, reverseGeocoder } from '../../lib/repositories/locationRepository'
 import { setSettings } from '../../store/settings'
+import { pushRecentLocation, useFavorites } from '../../store/favorites'
 
 export function LocationPicker() {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const fav = useFavorites()
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(false)
@@ -41,6 +43,7 @@ export function LocationPicker() {
 
   function pick(loc) {
     setSettings({ location: loc })
+    pushRecentLocation(loc)
     navigate('/')
   }
 
@@ -58,6 +61,8 @@ export function LocationPicker() {
     )
   }
 
+  const showRecents = !query.trim() && fav.recentLocations.length > 0
+
   return (
     <div className="stack">
       <Button onClick={useDevice} variant="soft" disabled={locating}>
@@ -74,11 +79,32 @@ export function LocationPicker() {
           autoFocus
         />
       </label>
+
+      {showRecents ? (
+        <div className="stack-sm">
+          <span className="muted small">{t('favorites.recentLocations')}</span>
+          <div className="surface" style={{ overflow: 'hidden' }}>
+            {fav.recentLocations.map((loc) => (
+              <button
+                key={`r-${loc.id}`}
+                type="button"
+                className="mp-set-row t-press"
+                style={{ width: '100%', textAlign: 'start' }}
+                onClick={() => pick(loc)}
+              >
+                <span className="mp-set-label">{loc.name}</span>
+                <span className="subtle small">{loc.countryName || loc.countryCode}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
       {loading ? (
         <div className="surface" style={{ padding: 18, display: 'flex', justifyContent: 'center' }}>
           <Spinner />
         </div>
-      ) : (
+      ) : query.trim() ? (
         <div className="surface" style={{ overflow: 'hidden' }}>
           {results.map((loc) => (
             <button
@@ -93,10 +119,12 @@ export function LocationPicker() {
             </button>
           ))}
           {!results.length && query.length >= 2 ? (
-            <p className="muted" style={{ padding: 16 }}>{t('common.noResults')}</p>
+            <p className="muted" style={{ padding: 16 }}>
+              {t('common.noResults')}
+            </p>
           ) : null}
         </div>
-      )}
+      ) : null}
     </div>
   )
 }

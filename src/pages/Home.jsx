@@ -9,6 +9,8 @@ import { LocationBar } from '../components/Home/LocationBar'
 import { Spinner } from '../components/ui/Spinner'
 import { Button } from '../components/ui/Button'
 import { useSettings } from '../store/settings'
+import { useFavorites } from '../store/favorites'
+import { LastReadCard } from '../components/Quran/LastReadCard'
 import { getPrayerTimes } from '../lib/prayer-times/prayerTimeRepository'
 import { createPrayerAttribute, createCustomMethod } from '../lib/prayer-times/prayerAttribute'
 import { PRAYER_KEYS } from '../lib/prayer-times/prayerTime'
@@ -36,6 +38,7 @@ function findCurrentIndex(prayer, now) {
 export default function Home() {
   const { t, i18n } = useTranslation()
   const settings = useSettings()
+  const fav = useFavorites()
   const [prayer, setPrayer] = useState(null)
   const [loading, setLoading] = useState(false)
   const [date] = useState(() => new Date())
@@ -88,6 +91,7 @@ export default function Home() {
             <PrayerCard prayer={prayer} currentIndex={idx} language={i18n.language} />
           )
         ) : null}
+        {fav.lastSurah ? <LastReadCard entry={fav.lastSurah} /> : null}
       </div>
     </section>
   )

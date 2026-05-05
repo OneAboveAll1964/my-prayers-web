@@ -1,0 +1,15 @@
+.mp-tasbih {
+  align-items: center;
+  text-align: center;
+  gap: 22px;
+}
+.mp-tasbih-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.mp-tasbih-target {
+  width: 100%;
+  max-width: 360px;
+  align-items: center;
+}

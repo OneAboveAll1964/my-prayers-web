@@ -58,15 +58,17 @@ export default function AzkarChapters() {
     <section className="page">
       <PageHeader title={categoryName || t('azkars.title')} subtitle={`${chapters.length} ${t('azkars.chapters')}`} back />
       <div className="page-body">
-        <label className="mp-search">
-          <Search size={16} aria-hidden="true" />
-          <TextInput
-            placeholder={t('azkars.search')}
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            style={{ height: 40, border: 'none', background: 'transparent', padding: 0 }}
-          />
-        </label>
+        <div className="mp-sticky">
+          <label className="mp-search">
+            <Search size={16} aria-hidden="true" />
+            <TextInput
+              placeholder={t('azkars.search')}
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              style={{ height: 40, border: 'none', background: 'transparent', padding: 0 }}
+            />
+          </label>
+        </div>
         {loading ? (
           <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
             <Spinner />

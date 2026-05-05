@@ -211,9 +211,22 @@ ul, ol { list-style: none; padding: 0; margin: 0; }
   border: 1px solid var(--line);
   border-radius: 12px;
   color: var(--text-muted);
+  width: 100%;
 }
-.mp-search input { background: transparent; }
+.mp-search input { background: transparent; flex: 1 1 auto; min-width: 0; }
 .mp-search input::placeholder { color: var(--text-subtle); }
+
+.mp-sticky {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 10;
+  background: var(--bg);
+  padding-block: 6px 10px;
+  margin-top: -6px;
+}
+@media (min-width: 900px) {
+  .mp-sticky { position: static; padding-block: 0; margin-top: 0; }
+}
 
 @media (min-width: 900px) {
   :root { --container: 980px; }

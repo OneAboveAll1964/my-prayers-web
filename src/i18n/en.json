@@ -55,7 +55,7 @@
     "title": "Qibla",
     "bearing": "Bearing",
     "distance": "Distance to Kaaba",
-    "calibrate": "Move your phone in a figure 8 to calibrate",
+    "calibrate": "Wave your phone side to side to calibrate the compass",
     "noCompass": "Compass not available — facing direction shown statically",
     "enable": "Enable compass"
   },
