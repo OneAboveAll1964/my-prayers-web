@@ -74,7 +74,7 @@ export default function Qibla() {
   return (
     <section className="page">
       <PageHeader title={t('qibla.title')} />
-      <div className="page-body" style={{ alignItems: 'center', textAlign: 'center', gap: 18 }}>
+      <div className="page-body mp-qibla-body">
         <Compass qiblaBearing={bearing} heading={heading} hasCompass={hasCompass} />
         <div className="stack-sm" style={{ alignItems: 'center' }}>
           <div className="row" style={{ gap: 16 }}>

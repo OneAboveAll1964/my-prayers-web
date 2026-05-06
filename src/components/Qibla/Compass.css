@@ -10,6 +10,17 @@
   place-items: center;
 }
 
+.mp-qibla-body {
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+  flex: 1 1 auto;
+  justify-content: center;
+}
+@media (min-width: 900px) {
+  .mp-qibla-body { justify-content: flex-start; padding-top: 24px; }
+}
+
 .mp-compass-ring {
   position: absolute;
   inset: 0;

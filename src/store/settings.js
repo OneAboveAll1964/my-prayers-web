@@ -75,8 +75,10 @@ export function useThemeSync() {
       const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
       const resolved = theme === 'auto' ? sys : theme
       document.documentElement.dataset.theme = resolved
-      const meta = document.querySelector('meta[name="theme-color"]')
-      if (meta) meta.setAttribute('content', resolved === 'dark' ? '#0e1013' : '#1F8A4C')
+      const bg = resolved === 'dark' ? '#0e1013' : '#fbfbfa'
+      document
+        .querySelectorAll('meta[name="theme-color"]')
+        .forEach((m) => m.setAttribute('content', bg))
     }
     apply()
     const mq = window.matchMedia('(prefers-color-scheme: dark)')

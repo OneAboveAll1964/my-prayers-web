@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { PageHeader } from '../components/Layout/PageHeader'
 import { MonthGrid } from '../components/Calendar/MonthGrid'
+import { DayCard } from '../components/Calendar/DayCard'
 import { PageLoader } from '../components/ui/PageLoader'
 import { useSettings } from '../store/settings'
 import { getMonthPrayerTimes } from '../lib/prayer-times/prayerTimeRepository'
@@ -89,7 +90,16 @@ export default function Calendar() {
         ) : loading ? (
           <PageLoader />
         ) : (
-          <MonthGrid days={days} language={i18n.language} />
+          <>
+            <div className="mp-cal-mobile">
+              {days.map(({ date, prayer }) => (
+                <DayCard key={date.toISOString()} date={date} prayer={prayer} language={i18n.language} />
+              ))}
+            </div>
+            <div className="mp-cal-desktop">
+              <MonthGrid days={days} language={i18n.language} />
+            </div>
+          </>
         )}
       </div>
     </section>

@@ -115,6 +115,9 @@ html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
 html[dir='rtl'][lang^='ar'] body { font-family: var(--font-arabic); }
 html[dir='rtl'][lang^='ckb'] body { font-family: var(--font-kurdish); }
 
+/* Force the Arabic font on any element marked lang="ar" regardless of UI language */
+[lang='ar'], [lang^='ar-'] { font-family: var(--font-arabic) !important; }
+
 html, body { min-height: 100%; }
 
 button { font: inherit; color: inherit; background: transparent; border: none; padding: 0; cursor: pointer; }
