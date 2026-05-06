@@ -57,6 +57,7 @@
   "qibla": {
     "title": "Qibla",
     "bearing": "Bearing",
+    "heading": "Heading",
     "distance": "Distance to Kaaba",
     "calibrate": "Wave your phone side to side to calibrate the compass",
     "noCompass": "Compass not available — facing direction shown statically",

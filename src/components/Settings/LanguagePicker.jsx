@@ -10,7 +10,7 @@ const LABELS = {
   ckb_Badini: 'کوردی (بادینی)',
 }
 
-export function LanguagePicker() {
+export function LanguagePicker({ onPick }) {
   const { i18n } = useTranslation()
   const { language } = useSettings()
   const current = language || i18n.language
@@ -27,6 +27,7 @@ export function LanguagePicker() {
             onClick={() => {
               setSettings({ language: code })
               i18n.changeLanguage(code)
+              if (onPick) onPick()
             }}
           >
             <span className="mp-set-label">{LABELS[code]}</span>

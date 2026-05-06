@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PageHeader } from '../components/Layout/PageHeader'
 import './Settings.css'
@@ -5,6 +6,8 @@ import { SettingRow } from '../components/Settings/SettingRow'
 import { ThemePicker } from '../components/Settings/ThemePicker'
 import { OffsetEditor } from '../components/Settings/OffsetEditor'
 import { ArabicFontPicker } from '../components/Settings/ArabicFontPicker'
+import { LanguagePicker } from '../components/Settings/LanguagePicker'
+import { Sheet } from '../components/Layout/Sheet'
 import { Toggle } from '../components/ui/Toggle'
 import { Field, TextInput } from '../components/ui/Field'
 import { useSettings, setSettings } from '../store/settings'
@@ -24,6 +27,7 @@ export default function Settings() {
   const { t, i18n } = useTranslation()
   const settings = useSettings()
   const lang = settings.language || i18n.language
+  const [langOpen, setLangOpen] = useState(false)
 
   return (
     <section className="page">
@@ -40,9 +44,27 @@ export default function Settings() {
         </div>
 
         <div className="surface" style={{ overflow: 'hidden' }}>
-          <SettingRow to="/settings/language" label={t('settings.language')} value={LANG_LABELS[lang]} />
-          <SettingRow to="/settings/location" label={t('settings.location')} value={settings.location ? settings.location.name : '—'} />
-          <SettingRow to="/settings/method" label={t('settings.calculationMethod')} value={t(`calc.${settings.calculationMethod}`)} />
+          <button
+            type="button"
+            className="mp-set-row t-press"
+            style={{ width: '100%', textAlign: 'start', cursor: 'pointer' }}
+            onClick={() => setLangOpen(true)}
+          >
+            <span className="mp-set-label">{t('settings.language')}</span>
+            <span className="mp-set-trail">
+              <span className="mp-set-value subtle">{LANG_LABELS[lang]}</span>
+            </span>
+          </button>
+          <SettingRow
+            to="/settings/location"
+            label={t('settings.location')}
+            value={settings.location ? settings.location.name : '—'}
+          />
+          <SettingRow
+            to="/settings/method"
+            label={t('settings.calculationMethod')}
+            value={t(`calc.${settings.calculationMethod}`)}
+          />
         </div>
 
         <div className="stack-sm">
@@ -77,9 +99,21 @@ export default function Settings() {
           <OffsetEditor />
         </div>
 
-        <div className="surface" style={{ padding: '14px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+        <div
+          className="surface"
+          style={{
+            padding: '14px 16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 12,
+          }}
+        >
           <span className="mp-set-label">{t('settings.useFixedTimes')}</span>
-          <Toggle checked={settings.useFixedTimes} onChange={(v) => setSettings({ useFixedTimes: v })} />
+          <Toggle
+            checked={settings.useFixedTimes}
+            onChange={(v) => setSettings({ useFixedTimes: v })}
+          />
         </div>
 
         {settings.calculationMethod === CalculationMethod.custom ? (
@@ -116,6 +150,14 @@ export default function Settings() {
           </a>
         </div>
       </div>
+
+      <Sheet
+        open={langOpen}
+        onClose={() => setLangOpen(false)}
+        title={t('settings.language')}
+      >
+        <LanguagePicker onPick={() => setLangOpen(false)} />
+      </Sheet>
     </section>
   )
 }

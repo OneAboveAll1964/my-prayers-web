@@ -125,6 +125,14 @@ export default function Qibla() {
       <div className="page-body mp-qibla-body">
         <Compass qiblaBearing={bearing} heading={heading} hasCompass={hasCompass} />
         <div className="stack-sm" style={{ alignItems: 'center' }}>
+          {hasCompass ? (
+            <div className="row" style={{ gap: 16 }}>
+              <span className="muted small">{t('qibla.heading')}</span>
+              <span className="tabular" style={{ fontWeight: 700 }}>
+                {Math.round((heading + 360) % 360)}°
+              </span>
+            </div>
+          ) : null}
           <div className="row" style={{ gap: 16 }}>
             <span className="muted small">{t('qibla.bearing')}</span>
             <span className="tabular" style={{ fontWeight: 700 }}>{Math.round(bearing)}°</span>

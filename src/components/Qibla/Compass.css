@@ -50,9 +50,10 @@
 }
 .mp-c-card-n { fill: var(--accent); }
 
-.mp-c-kaaba { fill: var(--text); }
-[data-theme='dark'] .mp-c-kaaba { fill: var(--text); }
-.mp-c-kaaba-stem { stroke: var(--text); stroke-width: 1.5; opacity: 0.6; }
+/* Kaaba is famously black with a band of golden text — mimic with two rects */
+.mp-c-kaaba { fill: #1a1a1a; }
+[data-theme='dark'] .mp-c-kaaba { fill: #0a0a0a; stroke: var(--surface-3); stroke-width: 1; }
+.mp-c-kaaba-band { fill: #c9a14a; }
 
 .mp-c-needle {
   transform-box: fill-box;
@@ -68,7 +69,6 @@
   stroke: var(--line-strong);
   stroke-width: 1.5;
 }
-.mp-c-hub-dot { fill: var(--text-muted); }
 
 /* Static "you are here / facing" marker at the top edge */
 .mp-compass-marker {

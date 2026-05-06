@@ -66,8 +66,8 @@ export function Compass({ qiblaBearing, heading, hasCompass }) {
           })}
 
           <g transform={`rotate(${qiblaBearing} 100 100)`}>
-            <rect x="93" y="11" width="14" height="12" rx="2" className="mp-c-kaaba" />
-            <line x1="100" y1="23" x2="100" y2="30" className="mp-c-kaaba-stem" />
+            <rect x="93" y="9" width="14" height="14" rx="1.5" className="mp-c-kaaba" />
+            <rect x="95" y="11" width="10" height="2" className="mp-c-kaaba-band" />
           </g>
         </g>
 
@@ -79,16 +79,12 @@ export function Compass({ qiblaBearing, heading, hasCompass }) {
           <polygon points="100,170 109,100 91,100" className="mp-c-needle-tail" />
         </g>
 
-        <circle cx="100" cy="100" r="26" className="mp-c-hub" />
-        <circle cx="100" cy="100" r="3.5" className="mp-c-hub-dot" />
+        <circle cx="100" cy="100" r="28" className="mp-c-hub" />
       </svg>
 
       <div className="mp-compass-readout">
         <span className="mp-compass-degree tabular">
-          {liveHeading != null ? `${liveHeading}°` : '—'}
-        </span>
-        <span className="mp-compass-readout-sub small subtle">
-          {Math.round(qiblaBearing)}° qibla
+          {liveHeading != null ? `${liveHeading}°` : `${Math.round(qiblaBearing)}°`}
         </span>
       </div>
     </div>
