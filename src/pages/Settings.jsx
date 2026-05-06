@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { PageHeader } from '../components/Layout/PageHeader'
+import './Settings.css'
 import { SettingRow } from '../components/Settings/SettingRow'
 import { ThemePicker } from '../components/Settings/ThemePicker'
 import { OffsetEditor } from '../components/Settings/OffsetEditor'
@@ -103,9 +104,17 @@ export default function Settings() {
           </div>
         ) : null}
 
-        <p className="subtle small" style={{ textAlign: 'center', marginTop: 8 }}>
-          {t('settings.about')} · {t('settings.version')} 0.1.0
-        </p>
+        <div className="mp-credit">
+          <span className="subtle small">{t('settings.version')} 0.1.0</span>
+          <a
+            className="mp-credit-link t-press"
+            href="https://github.com/OneAboveAll1964"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            {t('settings.madeBy')} OneAboveAll1964
+          </a>
+        </div>
       </div>
     </section>
   )

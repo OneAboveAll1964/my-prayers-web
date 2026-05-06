@@ -11,12 +11,12 @@
 }
 
 .mp-fontpicker-btn {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 1fr auto;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 18px 14px 12px;
+  justify-items: center;
+  gap: 4px;
+  padding: 12px 10px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -24,7 +24,9 @@
   transition:
     background var(--duration-fast) var(--ease),
     border-color var(--duration-fast) var(--ease);
-  min-height: 92px;
+  height: 96px;
+  overflow: hidden;
+  min-width: 0;
 }
 .mp-fontpicker-btn:active { background: var(--surface-2); }
 .mp-fontpicker-btn.is-active {
@@ -34,16 +36,26 @@
 }
 
 .mp-fontpicker-preview {
-  font-size: 26px;
-  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  line-height: 1;
+  height: 44px;
   direction: rtl;
   white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
 }
 .mp-fontpicker-label {
-  font-size: 11.5px;
+  font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-muted);
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .mp-fontpicker-btn.is-active .mp-fontpicker-label { color: var(--accent-strong); }

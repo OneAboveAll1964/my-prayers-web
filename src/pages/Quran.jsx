@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Search } from 'lucide-react'
+import { Search, Type } from 'lucide-react'
 import { PageHeader } from '../components/Layout/PageHeader'
 import { PageLoader } from '../components/ui/PageLoader'
 import { TextInput } from '../components/ui/Field'
 import { SurahRow } from '../components/Quran/SurahRow'
 import { LastReadCard } from '../components/Quran/LastReadCard'
 import { AyahBookmark } from '../components/Quran/AyahBookmark'
+import { Sheet } from '../components/Layout/Sheet'
+import { ArabicFontPicker } from '../components/Settings/ArabicFontPicker'
 import { getSurahList, getSurahListCached } from '../lib/quran'
 import { useFavorites } from '../store/favorites'
 
@@ -16,6 +18,7 @@ export default function Quran() {
   const [list, setList] = useState(cached || [])
   const [loading, setLoading] = useState(!cached)
   const [query, setQuery] = useState('')
+  const [fontOpen, setFontOpen] = useState(false)
   const fav = useFavorites()
 
   useEffect(() => {
@@ -60,9 +63,21 @@ export default function Quran() {
     </label>
   )
 
+  const fontAction = (
+    <button
+      type="button"
+      className="tap t-press"
+      aria-label={t('settings.arabicFont')}
+      onClick={() => setFontOpen(true)}
+      style={{ color: 'var(--text-muted)' }}
+    >
+      <Type size={20} aria-hidden="true" />
+    </button>
+  )
+
   return (
     <section className="page">
-      <PageHeader title={t('quran.title')} search={searchSlot} />
+      <PageHeader title={t('quran.title')} search={searchSlot} action={fontAction} />
       <div className="page-body">
         {loading ? (
           <PageLoader />
@@ -100,6 +115,9 @@ export default function Quran() {
           </>
         )}
       </div>
+      <Sheet open={fontOpen} onClose={() => setFontOpen(false)} title={t('settings.arabicFont')}>
+        <ArabicFontPicker />
+      </Sheet>
     </section>
   )
 }

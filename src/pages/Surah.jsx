@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Bookmark } from 'lucide-react'
+import { Bookmark, Type } from 'lucide-react'
 import { PageHeader } from '../components/Layout/PageHeader'
 import { PageLoader } from '../components/ui/PageLoader'
 import { AyahRow } from '../components/Surah/AyahRow'
+import { Sheet } from '../components/Layout/Sheet'
+import { ArabicFontPicker } from '../components/Settings/ArabicFontPicker'
 import { getSurah, getSurahCached } from '../lib/quran'
 import { setLastSurah, toggleBookmarkSurah, useFavorites } from '../store/favorites'
 
@@ -18,6 +20,7 @@ export default function Surah() {
   const [loading, setLoading] = useState(!cached)
   const fav = useFavorites()
   const marked = fav.surahs.includes(num)
+  const [fontOpen, setFontOpen] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -67,16 +70,27 @@ export default function Surah() {
         subtitle={surah ? `${surah.ayahs.length} ${t('quran.ayahs')}` : null}
         back
         action={
-          <button
-            type="button"
-            className="tap t-press"
-            aria-pressed={marked}
-            aria-label="Bookmark"
-            onClick={() => toggleBookmarkSurah(num)}
-            style={{ color: marked ? 'var(--accent)' : 'var(--text-muted)' }}
-          >
-            <Bookmark size={20} fill={marked ? 'currentColor' : 'none'} aria-hidden="true" />
-          </button>
+          <span className="row" style={{ gap: 4 }}>
+            <button
+              type="button"
+              className="tap t-press"
+              aria-label={t('settings.arabicFont')}
+              onClick={() => setFontOpen(true)}
+              style={{ color: 'var(--text-muted)' }}
+            >
+              <Type size={20} aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              className="tap t-press"
+              aria-pressed={marked}
+              aria-label="Bookmark"
+              onClick={() => toggleBookmarkSurah(num)}
+              style={{ color: marked ? 'var(--accent)' : 'var(--text-muted)' }}
+            >
+              <Bookmark size={20} fill={marked ? 'currentColor' : 'none'} aria-hidden="true" />
+            </button>
+          </span>
         }
       />
       <div className="page-body">
@@ -92,6 +106,9 @@ export default function Surah() {
           </div>
         )}
       </div>
+      <Sheet open={fontOpen} onClose={() => setFontOpen(false)} title={t('settings.arabicFont')}>
+        <ArabicFontPicker />
+      </Sheet>
     </section>
   )
 }
