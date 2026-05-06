@@ -42,7 +42,8 @@
     inset-inline: auto;
     right: 24px;
     bottom: 24px;
-    max-width: 480px;
+    width: 640px;
+    max-width: calc(100vw - 48px);
     border-radius: var(--radius-lg);
     transform: translateY(20px);
     opacity: 0;
