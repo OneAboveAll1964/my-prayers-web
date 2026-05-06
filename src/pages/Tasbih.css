@@ -2,6 +2,10 @@
   align-items: center;
   text-align: center;
   gap: 22px;
+  justify-content: center;
+}
+@media (min-width: 900px) {
+  .mp-tasbih { justify-content: flex-start; padding-top: 24px; }
 }
 .mp-tasbih-meta {
   display: flex;
