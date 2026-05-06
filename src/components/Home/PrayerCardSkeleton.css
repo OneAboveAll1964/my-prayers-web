@@ -1,37 +1,29 @@
-.mp-next-skeleton {
-  background: var(--accent-soft);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 18px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* Hide the actual text and overlay a pulsing block over the same footprint,
+   so the skeleton occupies the exact same height as the loaded card. */
+.mp-skel-on-accent,
+.mp-skel-on-surface {
+  position: relative;
+  color: transparent;
+  user-select: none;
 }
-
-.mp-skeleton-line,
-.mp-skeleton-pill {
-  display: block;
-  background: var(--surface-3);
+.mp-skel-on-accent::after,
+.mp-skel-on-surface::after {
+  content: '';
+  position: absolute;
+  inset: 18% 0;
   border-radius: 6px;
   animation: mp-skel-pulse 1.4s ease-in-out infinite;
 }
-.mp-skeleton-line { height: 14px; width: 80px; }
-.mp-skeleton-line.big { height: 44px; width: 60%; border-radius: 10px; }
-.mp-skeleton-line.w-24 { width: 96px; }
-.mp-skeleton-line.w-32 { width: 128px; }
-
-.mp-skeleton-pill {
-  width: 56px;
-  height: 18px;
-  border-radius: 999px;
-  background: var(--surface-2);
-}
+.mp-skel-on-accent::after { background: rgba(255, 255, 255, 0.28); }
+[data-theme='dark'] .mp-skel-on-accent::after { background: rgba(0, 0, 0, 0.18); }
+.mp-skel-on-surface::after { background: var(--surface-3); }
 
 @keyframes mp-skel-pulse {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.55; }
+  50% { opacity: 0.5; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mp-skeleton-line, .mp-skeleton-pill { animation: none; }
+  .mp-skel-on-accent::after,
+  .mp-skel-on-surface::after { animation: none; }
 }
