@@ -74,7 +74,6 @@ export const ARABIC_FONTS = [
   { id: 'naskh', label: 'Naskh', family: 'Noto Naskh Arabic' },
   { id: 'scheherazade', label: 'Scheherazade', family: 'Scheherazade New' },
   { id: 'kufi', label: 'Kufi', family: 'Reem Kufi' },
-  { id: 'cairo', label: 'Cairo', family: 'Cairo' },
 ]
 
 export function fontFamilyFor(id) {

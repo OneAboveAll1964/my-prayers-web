@@ -99,8 +99,9 @@ html, body { height: 100%; overflow: hidden; }
 html[dir='rtl'][lang^='ar'] body { font-family: var(--font-arabic); }
 html[dir='rtl'][lang^='ckb'] body { font-family: var(--font-kurdish); }
 
-/* Force the Arabic font on any element marked lang="ar" regardless of UI language */
-[lang='ar'], [lang^='ar-'] { font-family: var(--font-arabic) !important; }
+/* Apply the Arabic font to any element marked lang="ar". Inline font-family on
+   a child still wins because that's a regular cascade, not !important. */
+[lang='ar'], [lang^='ar-'] { font-family: var(--font-arabic); }
 
 html, body { min-height: 100%; }
 

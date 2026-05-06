@@ -3,6 +3,7 @@ import { PageHeader } from '../components/Layout/PageHeader'
 import { SettingRow } from '../components/Settings/SettingRow'
 import { ThemePicker } from '../components/Settings/ThemePicker'
 import { OffsetEditor } from '../components/Settings/OffsetEditor'
+import { ArabicFontPicker } from '../components/Settings/ArabicFontPicker'
 import { Toggle } from '../components/ui/Toggle'
 import { Field, TextInput } from '../components/ui/Field'
 import { useSettings, setSettings } from '../store/settings'
@@ -30,6 +31,11 @@ export default function Settings() {
         <div className="stack-sm">
           <span className="muted small">{t('settings.theme')}</span>
           <ThemePicker />
+        </div>
+
+        <div className="stack-sm">
+          <span className="muted small">{t('settings.arabicFont')}</span>
+          <ArabicFontPicker />
         </div>
 
         <div className="surface" style={{ overflow: 'hidden' }}>
