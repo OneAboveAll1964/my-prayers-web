@@ -17,9 +17,6 @@
   flex: 1 1 auto;
   justify-content: center;
 }
-@media (min-width: 900px) {
-  .mp-qibla-body { justify-content: flex-start; padding-top: 24px; }
-}
 
 .mp-compass-svg {
   position: absolute;

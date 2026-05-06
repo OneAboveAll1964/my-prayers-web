@@ -4,9 +4,6 @@
   gap: 22px;
   justify-content: center;
 }
-@media (min-width: 900px) {
-  .mp-tasbih { justify-content: flex-start; padding-top: 24px; }
-}
 .mp-tasbih-meta {
   display: flex;
   align-items: baseline;
@@ -19,6 +16,7 @@
 }
 .mp-tasbih-actions {
   width: 100%;
+  max-width: 360px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
