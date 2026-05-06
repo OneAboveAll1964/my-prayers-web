@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Bookmark } from 'lucide-react'
 import { PageHeader } from '../components/Layout/PageHeader'
@@ -11,6 +11,7 @@ import { setLastSurah, toggleBookmarkSurah, useFavorites } from '../store/favori
 export default function Surah() {
   const { t, i18n } = useTranslation()
   const { number } = useParams()
+  const { hash } = useLocation()
   const num = Number(number)
   const cached = getSurahCached(num, i18n.language)
   const [surah, setSurah] = useState(cached || null)
@@ -49,6 +50,15 @@ export default function Surah() {
       cancelled = true
     }
   }, [num, i18n.language])
+
+  useEffect(() => {
+    if (!surah || !hash) return
+    const id = hash.slice(1)
+    const el = document.getElementById(id)
+    if (el) {
+      requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }))
+    }
+  }, [surah, hash])
 
   return (
     <section className="page">
