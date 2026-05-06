@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next'
-import { RotateCcw } from 'lucide-react'
+import { RotateCcw, Eraser } from 'lucide-react'
 import { PageHeader } from '../components/Layout/PageHeader'
 import { Bead } from '../components/Tasbih/Bead'
 import { Button } from '../components/ui/Button'
 import { SegmentedControl } from '../components/ui/SegmentedControl'
-import { resetTasbih, setTasbih, useFavorites } from '../store/favorites'
+import { resetTasbih, resetTasbihAll, setTasbih, useFavorites } from '../store/favorites'
 import './Tasbih.css'
 
 export default function Tasbih() {
@@ -45,10 +45,16 @@ export default function Tasbih() {
             ]}
           />
         </div>
-        <Button variant="outline" onClick={resetTasbih}>
-          <RotateCcw size={16} aria-hidden="true" />
-          {t('tasbih.reset')}
-        </Button>
+        <div className="mp-tasbih-actions">
+          <Button variant="outline" onClick={resetTasbih}>
+            <RotateCcw size={16} aria-hidden="true" />
+            {t('tasbih.reset')}
+          </Button>
+          <Button variant="outline" onClick={resetTasbihAll}>
+            <Eraser size={16} aria-hidden="true" />
+            {t('tasbih.resetAll')}
+          </Button>
+        </div>
       </div>
     </section>
   )

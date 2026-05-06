@@ -24,6 +24,7 @@
     "title": "Tasbih",
     "tap": "Tap to count",
     "reset": "Reset",
+    "resetAll": "Reset all",
     "total": "Total",
     "target": "Target"
   },

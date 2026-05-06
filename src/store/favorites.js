@@ -108,3 +108,7 @@ export function setTasbih(patch) {
 export function resetTasbih() {
   update({ tasbih: { ...state.tasbih, count: 0 } })
 }
+
+export function resetTasbihAll() {
+  update({ tasbih: { ...state.tasbih, count: 0, total: 0 } })
+}
