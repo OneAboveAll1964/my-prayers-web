@@ -39,6 +39,18 @@ export default function Settings() {
         </div>
 
         <div className="stack-sm">
+          <span className="muted small">{t('settings.timeFormat')}</span>
+          <SegmentedControl
+            value={settings.timeFormat || '24h'}
+            onChange={(v) => setSettings({ timeFormat: v })}
+            options={[
+              { value: '24h', label: t('settings.time24h') },
+              { value: '12h', label: t('settings.time12h') },
+            ]}
+          />
+        </div>
+
+        <div className="stack-sm">
           <span className="muted small">{t('settings.arabicFont')}</span>
           <ArabicFontPicker />
         </div>

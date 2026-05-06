@@ -17,6 +17,7 @@ const DEFAULTS = {
   ishaAngle: 17,
   offsets: [0, 0, 0, 0, 0, 0],
   useFixedTimes: true,
+  timeFormat: '24h',
 }
 
 let state = load()

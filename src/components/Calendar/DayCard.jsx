@@ -4,12 +4,13 @@ import { hijriDayMonth } from '../../lib/hijri'
 import { isSameDay } from '../../lib/utils/dateUtils'
 import './DayCard.css'
 
-function fmt(d, lang) {
+function fmt(d, lang, timeFormat) {
   if (!d) return '—'
-  return new Intl.DateTimeFormat(lang, { hour: '2-digit', minute: '2-digit', hour12: false }).format(d)
+  const hour12 = timeFormat === '12h'
+  return new Intl.DateTimeFormat(lang, { hour: '2-digit', minute: '2-digit', hour12 }).format(d)
 }
 
-export function DayCard({ date, prayer, language }) {
+export function DayCard({ date, prayer, language, timeFormat }) {
   const { t } = useTranslation()
   const lang = language || 'en'
   const hijriLang = lang.startsWith('ar') ? 'ar' : 'en'
@@ -31,7 +32,7 @@ export function DayCard({ date, prayer, language }) {
         {PRAYER_KEYS.map((k) => (
           <div key={k} className="mp-daycard-cell">
             <span className="mp-daycard-name muted small">{t(`prayers.${k}`)}</span>
-            <span className="mp-daycard-time tabular">{prayer ? fmt(prayer[k], lang) : '—'}</span>
+            <span className="mp-daycard-time tabular">{prayer ? fmt(prayer[k], lang, timeFormat) : '—'}</span>
           </div>
         ))}
       </div>

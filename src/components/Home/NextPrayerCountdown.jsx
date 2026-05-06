@@ -24,7 +24,7 @@ function fmtRemaining(ms) {
   return `${pad(m)}:${pad(s)}`
 }
 
-export function NextPrayerCountdown({ prayer, language }) {
+export function NextPrayerCountdown({ prayer, language, timeFormat }) {
   const { t } = useTranslation()
   const [now, setNow] = useState(() => new Date())
   useEffect(() => {
@@ -32,6 +32,7 @@ export function NextPrayerCountdown({ prayer, language }) {
     return () => clearInterval(id)
   }, [])
   const next = findNext(prayer, now)
+  const hour12 = timeFormat === '12h'
   return (
     <div className="mp-next surface fade-in">
       <div className="mp-next-row">
@@ -44,7 +45,7 @@ export function NextPrayerCountdown({ prayer, language }) {
         </span>
         <span className="mp-next-at tabular">
           {next
-            ? new Intl.DateTimeFormat(language || 'en', { hour: '2-digit', minute: '2-digit', hour12: false }).format(next.at)
+            ? new Intl.DateTimeFormat(language || 'en', { hour: '2-digit', minute: '2-digit', hour12 }).format(next.at)
             : ''}
         </span>
       </div>

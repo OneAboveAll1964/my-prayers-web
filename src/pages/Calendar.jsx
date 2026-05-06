@@ -93,11 +93,11 @@ export default function Calendar() {
           <>
             <div className="mp-cal-mobile">
               {days.map(({ date, prayer }) => (
-                <DayCard key={date.toISOString()} date={date} prayer={prayer} language={i18n.language} />
+                <DayCard key={date.toISOString()} date={date} prayer={prayer} language={i18n.language} timeFormat={settings.timeFormat} />
               ))}
             </div>
             <div className="mp-cal-desktop">
-              <MonthGrid days={days} language={i18n.language} />
+              <MonthGrid days={days} language={i18n.language} timeFormat={settings.timeFormat} />
             </div>
           </>
         )}

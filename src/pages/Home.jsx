@@ -87,8 +87,8 @@ export default function Home() {
             <PrayerCardSkeleton />
           ) : (
             <>
-              <NextPrayerCountdown prayer={prayer} language={i18n.language} />
-              <PrayerCard prayer={prayer} currentIndex={idx} language={i18n.language} />
+              <NextPrayerCountdown prayer={prayer} language={i18n.language} timeFormat={settings.timeFormat} />
+              <PrayerCard prayer={prayer} currentIndex={idx} language={i18n.language} timeFormat={settings.timeFormat} />
             </>
           )
         ) : null}

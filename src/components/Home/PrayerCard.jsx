@@ -2,12 +2,13 @@ import { useTranslation } from 'react-i18next'
 import { PRAYER_KEYS } from '../../lib/prayer-times/prayerTime'
 import './PrayerCard.css'
 
-function fmtTime(date, lang) {
+function fmtTime(date, lang, timeFormat) {
   if (!(date instanceof Date)) return '—'
-  return new Intl.DateTimeFormat(lang || 'en', { hour: '2-digit', minute: '2-digit', hour12: false }).format(date)
+  const hour12 = timeFormat === '12h'
+  return new Intl.DateTimeFormat(lang || 'en', { hour: '2-digit', minute: '2-digit', hour12 }).format(date)
 }
 
-export function PrayerCard({ prayer, currentIndex, language }) {
+export function PrayerCard({ prayer, currentIndex, language, timeFormat }) {
   const { t } = useTranslation()
   return (
     <div className="mp-prayer-card surface fade-in">
@@ -18,7 +19,7 @@ export function PrayerCard({ prayer, currentIndex, language }) {
           return (
             <li key={key} className={`mp-prayer-row ${active ? 'is-active' : ''}`}>
               <span className="mp-prayer-name">{t(`prayers.${key}`)}</span>
-              <span className="mp-prayer-time tabular">{fmtTime(time, language)}</span>
+              <span className="mp-prayer-time tabular">{fmtTime(time, language, timeFormat)}</span>
             </li>
           )
         })}

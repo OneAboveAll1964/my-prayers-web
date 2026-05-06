@@ -3,12 +3,13 @@ import { PRAYER_KEYS } from '../../lib/prayer-times/prayerTime'
 import { hijriDayMonth } from '../../lib/hijri'
 import './MonthGrid.css'
 
-function fmt(d, lang) {
+function fmt(d, lang, timeFormat) {
   if (!d) return '—'
-  return new Intl.DateTimeFormat(lang, { hour: '2-digit', minute: '2-digit', hour12: false }).format(d)
+  const hour12 = timeFormat === '12h'
+  return new Intl.DateTimeFormat(lang, { hour: '2-digit', minute: '2-digit', hour12 }).format(d)
 }
 
-export function MonthGrid({ days, language }) {
+export function MonthGrid({ days, language, timeFormat }) {
   const { t } = useTranslation()
   const lang = language || 'en'
   const hijriLang = lang.startsWith('ar') ? 'ar' : 'en'
@@ -28,7 +29,7 @@ export function MonthGrid({ days, language }) {
               <span className="mp-cal-day-hijri small subtle">{hijriDayMonth(date, hijriLang)}</span>
             </div>
             {PRAYER_KEYS.map((k) => (
-              <span key={k} className="mp-cal-cell tabular">{prayer ? fmt(prayer[k], lang) : '—'}</span>
+              <span key={k} className="mp-cal-cell tabular">{prayer ? fmt(prayer[k], lang, timeFormat) : '—'}</span>
             ))}
           </div>
         ))}
