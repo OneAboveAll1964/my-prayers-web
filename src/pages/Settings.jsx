@@ -53,6 +53,7 @@ export default function Settings() {
         <div className="stack-sm">
           <span className="muted small">{t('settings.higherLatitude')}</span>
           <SegmentedControl
+            layout="grid"
             value={settings.higherLatitudeMethod}
             onChange={(v) => setSettings({ higherLatitudeMethod: v })}
             options={[

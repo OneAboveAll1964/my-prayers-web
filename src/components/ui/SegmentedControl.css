@@ -7,6 +7,11 @@
   padding: 3px;
   gap: 2px;
 }
+.mp-seg-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: var(--radius);
+}
 .mp-seg-item {
   flex: 1 1 0;
   min-width: 0;
