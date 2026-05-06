@@ -5,8 +5,10 @@ A responsive, installable prayer-times PWA. Web port of the React Native package
 the same astronomical engine, the same offline geocoder, the same Hisnul Muslim
 azkars and 99 Names of Allah, plus Quran reading with a Sorani translation.
 
-Frontend-only. No server beyond Supabase (read-only) and the public
-[alquran.cloud](https://alquran.cloud) API.
+> This repo is published for **code reference only**. The data backend is a
+> private Supabase project; the schema and migration tooling are not included.
+> Browse the code, copy patterns, build something of your own — but you won't
+> be able to spin up a working instance from this repo alone.
 
 ## Features
 
@@ -23,14 +25,15 @@ Frontend-only. No server beyond Supabase (read-only) and the public
   persist across reloads.
 - **99 Names of Allah** — name, transliteration, translation in every supported
   language.
-- **Quran** — full text from alquran.cloud (Quran Uthmani + the
-  **Burhan Muhammad-Amin** Sorani translation, plus en.sahih and ar.muyassar).
-  Bookmark whole surahs **and** individual ayahs; "Continue reading" picks up
-  where you left off; tapping an ayah bookmark scrolls straight to it.
+- **Quran** — full text from [alquran.cloud](https://alquran.cloud) (Quran
+  Uthmani + the **Burhan Muhammad-Amin** Sorani translation, plus en.sahih and
+  ar.muyassar). Bookmark whole surahs **and** individual ayahs; "Continue
+  reading" picks up where you left off; tapping an ayah bookmark scrolls
+  straight to it.
 - **Tasbih** — large-bead counter with target presets (33 / 99 / 100 / ∞) and a
   running total. Two reset buttons: clear the current count or wipe the total too.
 - **Hijri date**, **monthly calendar** (stacked day cards on mobile, full grid on
-  desktop, single batched query per month), **next-prayer countdown**.
+  desktop), **next-prayer countdown**.
 - **Languages** — English, Arabic, Kurdish (Sorani), Kurdish (Badini). Full RTL.
 - **Theming** — light / dark / auto with a green accent (`#1F8A4C`). System-bar
   color follows the active theme on mobile.
@@ -51,8 +54,8 @@ location-dependent.
 
 - **Vite 8** + **React 19** (JSX only, no TypeScript)
 - **react-router 7**, **react-i18next**, **lucide-react** icons
-- **@supabase/supabase-js** — public read-only access to a Supabase Postgres copy
-  of the source SQLite database
+- **@supabase/supabase-js** — read-only access to a Postgres copy of the source
+  prayer / azkar / location data
 - **vite-plugin-pwa** for the service worker + manifest
 - **@fontsource** for self-hosted typefaces
 - **eslint + prettier**
@@ -78,8 +81,8 @@ src/
 │   │   ├── higherLatitudeMethod.js
 │   │   ├── prayerAttribute.js
 │   │   ├── prayerTime.js
-│   │   └── prayerTimeRepository.js   # batches month queries against Supabase
-│   ├── repositories/        # Supabase-backed data access
+│   │   └── prayerTimeRepository.js
+│   ├── repositories/        # data access (locations, names, azkars)
 │   │   ├── locationRepository.js
 │   │   ├── nameOfAllahRepository.js
 │   │   └── hisnulMuslimRepository.js
@@ -97,49 +100,7 @@ src/
 └── components/<PageName>/   # one folder per page, plus Layout/ and ui/ primitives
 ```
 
-The frontend talks only to two origins: your Supabase project (anon key) and
-`api.alquran.cloud`.
-
-## Setup
-
-```bash
-npm install
-cp .env.example .env   # already filled in with the Supabase URL + anon key
-npm run dev            # http://localhost:5173
-```
-
-## Scripts
-
-| Script | What it does |
-| --- | --- |
-| `npm run dev` | Vite dev server |
-| `npm run dev:https` | Vite dev with self-signed HTTPS — required to test the compass / install the PWA from a phone (`HTTPS=1 vite --host`) |
-| `npm run build` | Production build into `dist/` |
-| `npm run preview` | Serve the production build |
-| `npm run preview:https` | Same, over HTTPS |
-| `npm run lint` | ESLint |
-| `npm run format` | Prettier write |
-| `npm run migrate` | Re-run the SQLite → Supabase data migration (needs service-role key) |
-
-## Supabase
-
-The schema lives in [`supabase/schema.sql`](./supabase/schema.sql). It mirrors
-the bundled SQLite database from the source RN package: countries, locations,
-prayer\_time, name + name\_translation, and the azkar\_category / chapter / item
-trio with their translation tables. RLS allows anon SELECTs only.
-
-Apply the schema once in the Supabase Studio SQL Editor, then load data with the
-**service-role** key (one-time):
-
-```bash
-SUPABASE_URL=https://<ref>.supabase.co \
-SUPABASE_SERVICE_KEY=eyJ... \
-npm run migrate
-```
-
-The script reads `muslim_db_v3.0.0.db` from the sibling
-`react-native-prayer-times/assets/custom/` directory by default; override with
-`SQLITE_DB=/path/to/file`.
+The frontend talks only to two origins: the data backend and `api.alquran.cloud`.
 
 ## Installing as an app
 
@@ -147,19 +108,11 @@ The script reads `muslim_db_v3.0.0.db` from the sibling
   app — no browser chrome, custom splash, theme color matches your light/dark
   setting.
 - **Android Chrome / desktop Chrome / Edge**: the *Install app* prompt fires
-  once the app is loaded at a **secure origin** (https or `localhost` directly
+  once the app is loaded at a **secure origin** (HTTPS or `localhost` directly
   on the same device).
 
-To install or to test the **Qibla compass** from a real phone you need an HTTPS
-URL — `http://<your-mac-ip>:5173/` over your LAN won't work, since
-`DeviceOrientation` and the install prompt require a secure origin. Two options:
-
-```bash
-npm run dev:https      # binds to 0.0.0.0 with a self-signed cert
-# then on your phone, open https://<your-mac-ip>:5173 and accept the warning
-```
-
-Or tunnel the dev server with `ngrok http 5173` / `cloudflared tunnel --url http://localhost:5173`.
+The **Qibla compass** also requires HTTPS — `DeviceOrientation` is gated on a
+secure origin in modern mobile browsers.
 
 ## Credits
 
