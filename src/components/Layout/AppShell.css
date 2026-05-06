@@ -1,6 +1,17 @@
-.shell { background: var(--bg); }
+.shell {
+  background: var(--bg);
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
 .shell-main {
   flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
   padding-bottom: calc(var(--tab-bar-h) + env(safe-area-inset-bottom, 0px));
 }
 
@@ -8,6 +19,7 @@
   .shell {
     display: grid;
     grid-template-columns: 240px 1fr;
+    grid-template-rows: 1fr;
     min-height: 100dvh;
   }
   .shell-main {

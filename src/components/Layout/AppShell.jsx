@@ -8,7 +8,7 @@ export function AppShell() {
   return (
     <div className="app shell" data-route={location.pathname}>
       <Sidebar />
-      <main className="shell-main">
+      <main className="shell-main mp-scroll">
         <div className="container">
           <Outlet />
         </div>
