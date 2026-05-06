@@ -62,7 +62,4 @@
   color: var(--text);
   white-space: nowrap;
   flex-shrink: 0;
-  max-width: 35%;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
