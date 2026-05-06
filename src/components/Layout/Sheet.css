@@ -1,0 +1,84 @@
+.mp-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+  visibility: hidden;
+  transition: visibility 0s linear var(--duration);
+}
+.mp-sheet.is-open {
+  pointer-events: auto;
+  visibility: visible;
+  transition: visibility 0s linear 0s;
+}
+.mp-sheet-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.32);
+  opacity: 0;
+  transition: opacity var(--duration) var(--ease);
+  cursor: default;
+}
+.mp-sheet.is-open .mp-sheet-scrim { opacity: 1; }
+[data-theme='dark'] .mp-sheet-scrim { background: rgba(0, 0, 0, 0.55); }
+
+.mp-sheet-panel {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+  padding: 8px 16px calc(20px + env(safe-area-inset-bottom, 0px));
+  transform: translateY(100%);
+  transition: transform var(--duration) var(--ease);
+  max-height: 88dvh;
+  overflow-y: auto;
+}
+.mp-sheet.is-open .mp-sheet-panel { transform: translateY(0); }
+@media (min-width: 900px) {
+  .mp-sheet-panel {
+    inset-inline: auto;
+    right: 24px;
+    bottom: 24px;
+    max-width: 480px;
+    border-radius: var(--radius-lg);
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  .mp-sheet.is-open .mp-sheet-panel { transform: translateY(0); opacity: 1; }
+}
+
+.mp-sheet-handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line-strong);
+  margin: 6px auto 10px;
+}
+@media (min-width: 900px) {
+  .mp-sheet-handle { display: none; }
+}
+
+.mp-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 4px 14px;
+}
+.mp-sheet-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.mp-sheet-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  color: var(--text-muted);
+}
+.mp-sheet-close:active { background: var(--surface-2); }
+
+.mp-sheet-content { padding-bottom: 8px; }
