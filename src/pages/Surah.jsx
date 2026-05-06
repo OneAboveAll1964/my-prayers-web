@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Bookmark, Type } from 'lucide-react'
@@ -8,7 +8,7 @@ import { AyahRow } from '../components/Surah/AyahRow'
 import { Sheet } from '../components/Layout/Sheet'
 import { ArabicFontPicker } from '../components/Settings/ArabicFontPicker'
 import { getSurah, getSurahCached } from '../lib/quran'
-import { setLastSurah, toggleBookmarkSurah, useFavorites } from '../store/favorites'
+import { getFavorites, setLastSurah, toggleBookmarkSurah, useFavorites } from '../store/favorites'
 
 export default function Surah() {
   const { t, i18n } = useTranslation()
@@ -38,11 +38,19 @@ export default function Surah() {
           if (cancelled) return
           if (data) {
             setSurah(data)
+            const prev = getFavorites().lastSurah
+            const ayahFromHash = hash ? Number(hash.replace(/^#ayah-/, '')) : null
+            const startAyah = Number.isFinite(ayahFromHash) && ayahFromHash > 0
+              ? ayahFromHash
+              : prev && prev.number === data.number && prev.lastAyah > 1
+                ? prev.lastAyah
+                : 1
             setLastSurah({
               number: data.number,
               englishName: data.englishName,
               name: data.name,
               ayahCount: data.ayahs.length,
+              lastAyah: startAyah,
             })
           }
         })
@@ -52,7 +60,7 @@ export default function Surah() {
     return () => {
       cancelled = true
     }
-  }, [num, i18n.language])
+  }, [num, i18n.language, hash])
 
   useEffect(() => {
     if (!surah || !hash) return
@@ -62,6 +70,48 @@ export default function Surah() {
       requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }))
     }
   }, [surah, hash])
+
+  const lastSavedAyahRef = useRef(0)
+  useEffect(() => {
+    if (!surah) return
+    const root =
+      document.querySelector('.shell-main') ||
+      document.querySelector('.page-body') ||
+      null
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let topNum = null
+        let topY = Infinity
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          const rect = entry.boundingClientRect
+          const id = entry.target.id || ''
+          const m = id.match(/^ayah-(\d+)$/)
+          if (!m) continue
+          if (rect.top < topY && rect.top > -8) {
+            topY = rect.top
+            topNum = Number(m[1])
+          }
+        }
+        if (topNum && topNum !== lastSavedAyahRef.current) {
+          lastSavedAyahRef.current = topNum
+          setLastSurah({
+            number: surah.number,
+            englishName: surah.englishName,
+            name: surah.name,
+            ayahCount: surah.ayahs.length,
+            lastAyah: topNum,
+          })
+        }
+      },
+      { root, rootMargin: '0px 0px -60% 0px', threshold: [0, 0.1, 0.5] }
+    )
+    const els = surah.ayahs
+      .map((a) => document.getElementById(`ayah-${a.numberInSurah}`))
+      .filter(Boolean)
+    els.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [surah])
 
   return (
     <section className="page">
