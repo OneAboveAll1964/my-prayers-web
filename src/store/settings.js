@@ -8,6 +8,7 @@ const KEY = 'mp.settings.v1'
 const DEFAULTS = {
   theme: 'auto',
   language: null,
+  arabicFont: 'amiri',
   location: null,
   calculationMethod: CalculationMethod.makkah,
   asrMethod: AsrMethod.shafii,
@@ -66,6 +67,28 @@ function subscribe(fn) {
 
 export function useSettings() {
   return useSyncExternalStore(subscribe, getSettings, getSettings)
+}
+
+export const ARABIC_FONTS = [
+  { id: 'amiri', label: 'Amiri', family: 'Amiri' },
+  { id: 'naskh', label: 'Naskh', family: 'Noto Naskh Arabic' },
+  { id: 'scheherazade', label: 'Scheherazade', family: 'Scheherazade New' },
+  { id: 'kufi', label: 'Kufi', family: 'Reem Kufi' },
+  { id: 'cairo', label: 'Cairo', family: 'Cairo' },
+]
+
+export function fontFamilyFor(id) {
+  return ARABIC_FONTS.find((f) => f.id === id)?.family ?? 'Amiri'
+}
+
+export function useArabicFontSync() {
+  const { arabicFont } = useSettings()
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      '--font-arabic-active',
+      `'${fontFamilyFor(arabicFont)}'`,
+    )
+  }, [arabicFont])
 }
 
 export function useThemeSync() {

@@ -1,0 +1,46 @@
+.mp-fontpicker {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+@media (min-width: 600px) {
+  .mp-fontpicker { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.mp-fontpicker-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 14px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  transition:
+    background var(--duration-fast) var(--ease),
+    border-color var(--duration-fast) var(--ease);
+  min-height: 92px;
+}
+.mp-fontpicker-btn:active { background: var(--surface-2); }
+.mp-fontpicker-btn.is-active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+.mp-fontpicker-preview {
+  font-size: 26px;
+  line-height: 1.4;
+  direction: rtl;
+  white-space: nowrap;
+}
+.mp-fontpicker-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+.mp-fontpicker-btn.is-active .mp-fontpicker-label { color: var(--accent-strong); }

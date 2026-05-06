@@ -90,6 +90,7 @@
   "settings": {
     "title": "Settings",
     "language": "Language",
+    "arabicFont": "Arabic font",
     "theme": "Theme",
     "themeAuto": "Auto",
     "themeLight": "Light",

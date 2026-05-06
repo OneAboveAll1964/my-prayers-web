@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { AppShell } from './components/Layout/AppShell'
 import { Spinner } from './components/ui/Spinner'
-import { useThemeSync, useSettings } from './store/settings'
+import { useThemeSync, useSettings, useArabicFontSync } from './store/settings'
 import { isRtl } from './lib/i18nLang'
 
 const Home = lazy(() => import('./pages/Home'))
@@ -43,6 +43,7 @@ function HtmlLangSync() {
 
 export default function App() {
   useThemeSync()
+  useArabicFontSync()
   return (
     <BrowserRouter>
       <HtmlLangSync />
