@@ -90,6 +90,7 @@
   "settings": {
     "title": "الإعدادات",
     "language": "اللغة",
+    "arabicFont": "الخط العربي",
     "theme": "السمة",
     "themeAuto": "تلقائي",
     "themeLight": "فاتح",
