@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PageHeader } from '../components/Layout/PageHeader'
-import { Spinner } from '../components/ui/Spinner'
+import { PageLoader } from '../components/ui/PageLoader'
 import { NameCard } from '../components/NamesOfAllah/NameCard'
 import {
   getNamesOfAllah,
@@ -43,9 +43,7 @@ export default function NamesOfAllah() {
       <PageHeader title={t('names.title')} />
       <div className="page-body">
         {loading ? (
-          <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
-            <Spinner />
-          </div>
+          <PageLoader />
         ) : (
           <div className="mp-names-grid">
             {items.map((n, i) => (

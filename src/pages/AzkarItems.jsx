@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { PageHeader } from '../components/Layout/PageHeader'
-import { Spinner } from '../components/ui/Spinner'
+import { PageLoader } from '../components/ui/PageLoader'
 import { AzkarItemCard } from '../components/AzkarItems/AzkarItemCard'
 import { getAzkarItems, getAzkarItemsCached } from '../lib/repositories/hisnulMuslimRepository'
 
@@ -41,9 +41,7 @@ export default function AzkarItems() {
       <PageHeader title={t('azkars.title')} subtitle={`${items.length} ${t('azkars.items')}`} back />
       <div className="page-body">
         {loading ? (
-          <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
-            <Spinner />
-          </div>
+          <PageLoader />
         ) : (
           <div className="stack">
             {items.map((item, i) => (
