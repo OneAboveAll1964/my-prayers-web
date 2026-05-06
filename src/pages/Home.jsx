@@ -71,17 +71,20 @@ export default function Home() {
 
   return (
     <section className="page">
-      <PageHeader title={t('appName')} subtitle={null} />
+      <PageHeader title={t('appName')} action={<LocationBar location={settings.location} />} />
       <div className="page-body">
         <DateBar date={date} />
-        <LocationBar location={settings.location} />
         {!settings.location ? (
           <div className="surface fade-in" style={{ padding: 18 }}>
             <p className="muted small" style={{ marginTop: 0 }}>{t('home.noLocation')}</p>
-            <Link to="/settings/location"><Button variant="solid">{t('home.searchCity')}</Button></Link>
+            <Link to="/settings/location">
+              <Button variant="solid">{t('home.searchCity')}</Button>
+            </Link>
           </div>
         ) : null}
-        {settings.location ? <NextPrayerCountdown prayer={prayer} language={i18n.language} /> : null}
+        {settings.location ? (
+          <NextPrayerCountdown prayer={prayer} language={i18n.language} />
+        ) : null}
         {settings.location ? (
           loading && !prayer ? (
             <PageLoader />

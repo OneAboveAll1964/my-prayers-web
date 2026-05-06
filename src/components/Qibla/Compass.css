@@ -1,14 +1,14 @@
 .mp-compass {
   position: relative;
-  width: min(72vw, 320px);
+  width: min(74vw, 340px);
   aspect-ratio: 1;
   margin-inline: auto;
   border-radius: 50%;
   background: var(--surface);
   border: 1px solid var(--line-strong);
-  display: grid;
-  place-items: center;
+  transition: border-color var(--duration-fast) var(--ease);
 }
+.mp-compass.is-aligned { border-color: var(--accent); }
 
 .mp-qibla-body {
   align-items: center;
@@ -21,55 +21,90 @@
   .mp-qibla-body { justify-content: flex-start; padding-top: 24px; }
 }
 
-.mp-compass-ring {
+.mp-compass-svg {
   position: absolute;
   inset: 0;
-  border-radius: 50%;
-  transition: transform var(--duration) var(--ease);
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.mp-compass-mark {
+.mp-c-edge { fill: none; stroke: var(--line); stroke-width: 1; }
+.mp-c-edge-inner { fill: none; stroke: var(--line); stroke-width: 1; opacity: 0.6; }
+
+.mp-c-dial {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform var(--duration) var(--ease);
+}
+.mp-c-tick { stroke: var(--text-subtle); stroke-width: 1; opacity: 0.5; }
+.mp-c-tick-maj { stroke: var(--text-muted); stroke-width: 1.4; opacity: 1; }
+.mp-c-tick-card { stroke: var(--text); stroke-width: 1.8; opacity: 1; }
+
+.mp-c-card {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  fill: var(--text-muted);
+}
+.mp-c-card-n { fill: var(--accent); }
+
+.mp-c-kaaba { fill: var(--text); }
+[data-theme='dark'] .mp-c-kaaba { fill: var(--text); }
+.mp-c-kaaba-stem { stroke: var(--text); stroke-width: 1.5; opacity: 0.6; }
+
+.mp-c-needle {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform var(--duration) var(--ease);
+}
+.mp-c-needle-tip { fill: var(--accent); }
+.mp-c-needle-tail { fill: var(--surface-3); }
+.mp-compass.is-aligned .mp-c-needle-tip { fill: var(--accent-strong); }
+
+.mp-c-hub {
+  fill: var(--surface);
+  stroke: var(--line-strong);
+  stroke-width: 1.5;
+}
+.mp-c-hub-dot { fill: var(--text-muted); }
+
+/* Static "you are here / facing" marker at the top edge */
+.mp-compass-marker {
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 12px solid var(--accent);
+}
+
+/* Center readout overlay (separate from SVG so we get crisp text) */
+.mp-compass-readout {
   position: absolute;
   left: 50%;
   top: 50%;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--text-muted);
-  letter-spacing: 0.06em;
   transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  gap: 1px;
 }
-.mp-compass-mark[data-dir='N'] { transform: translate(-50%, calc(-50% - 42%)); color: var(--accent); }
-.mp-compass-mark[data-dir='E'] { transform: translate(calc(-50% + 42%), -50%); }
-.mp-compass-mark[data-dir='S'] { transform: translate(-50%, calc(-50% + 42%)); }
-.mp-compass-mark[data-dir='W'] { transform: translate(calc(-50% - 42%), -50%); }
-
-.mp-compass-needle {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  transition: transform var(--duration) var(--ease);
+.mp-compass-degree {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1;
 }
-.mp-compass-pointer {
-  width: 4px;
-  height: 44%;
-  background: var(--accent);
-  border-radius: 2px;
-  transform-origin: bottom center;
-  transform: translateY(-30%);
+.mp-compass-readout-sub {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
-.mp-compass-center {
-  position: relative;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--surface);
-  border: 1px solid var(--line-strong);
-  display: grid;
-  place-items: center;
-  color: var(--accent);
-  z-index: 1;
-}
-
-.mp-compass.is-aligned { border-color: var(--accent); }
-.mp-compass.is-aligned .mp-compass-pointer { background: var(--accent-strong); }

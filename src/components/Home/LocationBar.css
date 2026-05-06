@@ -1,14 +1,20 @@
 .mp-locbar {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  gap: 6px;
+  padding: 7px 12px;
   border-radius: 999px;
   background: var(--surface-2);
   border: 1px solid var(--line);
   color: var(--text);
-  font-size: 13.5px;
-  font-weight: 500;
-  width: fit-content;
+  font-size: 13px;
+  font-weight: 600;
+  max-width: 50vw;
+  transition: background var(--duration-fast) var(--ease);
 }
-.mp-locbar-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 60vw; }
+.mp-locbar:active { background: var(--surface-3); }
+.mp-locbar-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
