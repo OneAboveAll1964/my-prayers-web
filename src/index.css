@@ -81,26 +81,36 @@ html, body, #root {
 }
 html { overscroll-behavior-y: none; }
 
-/* Custom low-profile scrollbars */
-* {
+/* Hide native document scrollbar everywhere */
+html, body { scrollbar-width: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; }
+
+/* Opt-in pretty scrollbar for explicit scroll containers (.mp-scroll).
+   Uses overlay so layout never shifts. */
+.mp-scroll {
+  scrollbar-gutter: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) transparent;
 }
-*::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-*::-webkit-scrollbar-track {
+.mp-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
   background: transparent;
 }
-*::-webkit-scrollbar-thumb {
+.mp-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 999px;
+  margin: 4px;
+}
+.mp-scroll::-webkit-scrollbar-thumb {
   background: var(--accent);
   border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  min-height: 28px;
 }
-*::-webkit-scrollbar-thumb:active {
-  background: var(--accent-strong);
-}
-*::-webkit-scrollbar-corner { background: transparent; }
+.mp-scroll::-webkit-scrollbar-thumb:active { background: var(--accent-strong); background-clip: padding-box; }
+.mp-scroll::-webkit-scrollbar-corner { background: transparent; }
 
 html[dir='rtl'][lang^='ar'] body { font-family: var(--font-arabic); }
 html[dir='rtl'][lang^='ckb'] body { font-family: var(--font-kurdish); }

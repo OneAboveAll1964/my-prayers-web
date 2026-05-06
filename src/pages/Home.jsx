@@ -6,7 +6,7 @@ import { PrayerCard } from '../components/Home/PrayerCard'
 import { NextPrayerCountdown } from '../components/Home/NextPrayerCountdown'
 import { DateBar } from '../components/Home/DateBar'
 import { LocationBar } from '../components/Home/LocationBar'
-import { Spinner } from '../components/ui/Spinner'
+import { PageLoader } from '../components/ui/PageLoader'
 import { Button } from '../components/ui/Button'
 import { useSettings } from '../store/settings'
 import { useFavorites } from '../store/favorites'
@@ -84,9 +84,7 @@ export default function Home() {
         {settings.location ? <NextPrayerCountdown prayer={prayer} language={i18n.language} /> : null}
         {settings.location ? (
           loading && !prayer ? (
-            <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
-              <Spinner />
-            </div>
+            <PageLoader />
           ) : (
             <PrayerCard prayer={prayer} currentIndex={idx} language={i18n.language} />
           )

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Bookmark } from 'lucide-react'
 import { PageHeader } from '../components/Layout/PageHeader'
-import { Spinner } from '../components/ui/Spinner'
+import { PageLoader } from '../components/ui/PageLoader'
 import { AyahRow } from '../components/Surah/AyahRow'
 import { getSurah, getSurahCached } from '../lib/quran'
 import { setLastSurah, toggleBookmarkSurah, useFavorites } from '../store/favorites'
@@ -71,9 +71,7 @@ export default function Surah() {
       />
       <div className="page-body">
         {loading ? (
-          <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
-            <Spinner />
-          </div>
+          <PageLoader />
         ) : !surah ? (
           <p className="muted">{t('common.error')}</p>
         ) : (

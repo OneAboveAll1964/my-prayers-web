@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Search } from 'lucide-react'
 import { PageHeader } from '../components/Layout/PageHeader'
-import { Spinner } from '../components/ui/Spinner'
+import { PageLoader } from '../components/ui/PageLoader'
 import { TextInput } from '../components/ui/Field'
 import { SurahRow } from '../components/Quran/SurahRow'
 import { LastReadCard } from '../components/Quran/LastReadCard'
@@ -63,9 +63,7 @@ export default function Quran() {
       <PageHeader title={t('quran.title')} search={searchSlot} />
       <div className="page-body">
         {loading ? (
-          <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
-            <Spinner />
-          </div>
+          <PageLoader />
         ) : (
           <>
             {showSections && fav.lastSurah ? <LastReadCard entry={fav.lastSurah} /> : null}

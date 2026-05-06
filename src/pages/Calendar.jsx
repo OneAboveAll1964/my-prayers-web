@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { PageHeader } from '../components/Layout/PageHeader'
 import { MonthGrid } from '../components/Calendar/MonthGrid'
-import { Spinner } from '../components/ui/Spinner'
+import { PageLoader } from '../components/ui/PageLoader'
 import { useSettings } from '../store/settings'
 import { getMonthPrayerTimes } from '../lib/prayer-times/prayerTimeRepository'
 import { createPrayerAttribute, createCustomMethod } from '../lib/prayer-times/prayerAttribute'
@@ -87,9 +87,7 @@ export default function Calendar() {
         {!settings.location ? (
           <p className="muted">{t('home.noLocation')}</p>
         ) : loading ? (
-          <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
-            <Spinner />
-          </div>
+          <PageLoader />
         ) : (
           <MonthGrid days={days} language={i18n.language} />
         )}
