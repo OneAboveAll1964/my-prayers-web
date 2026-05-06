@@ -1,0 +1,8 @@
+.mp-pageloader {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50dvh;
+  color: var(--accent);
+}

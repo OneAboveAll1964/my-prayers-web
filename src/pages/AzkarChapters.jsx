@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Search } from 'lucide-react'
 import { PageHeader } from '../components/Layout/PageHeader'
-import { Spinner } from '../components/ui/Spinner'
+import { PageLoader } from '../components/ui/PageLoader'
 import { TextInput } from '../components/ui/Field'
 import { ChapterRow } from '../components/AzkarChapters/ChapterRow'
 import {
@@ -94,9 +94,7 @@ export default function AzkarChapters() {
       />
       <div className="page-body">
         {loading ? (
-          <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
-            <Spinner />
-          </div>
+          <PageLoader />
         ) : (
           <div className="surface" style={{ overflow: 'hidden' }}>
             {filtered.map((c) => (

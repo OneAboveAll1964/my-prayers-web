@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { PageHeader } from '../components/Layout/PageHeader'
-import { Spinner } from '../components/ui/Spinner'
+import { PageLoader } from '../components/ui/PageLoader'
 import { CategoryTile } from '../components/Azkars/CategoryTile'
 import { ChapterRow } from '../components/AzkarChapters/ChapterRow'
 import {
@@ -82,9 +82,7 @@ export default function Azkars() {
         ) : null}
 
         {loading ? (
-          <div className="surface" style={{ padding: 22, display: 'flex', justifyContent: 'center' }}>
-            <Spinner />
-          </div>
+          <PageLoader />
         ) : (
           <div className="stack">
             {items.map((c) => (
