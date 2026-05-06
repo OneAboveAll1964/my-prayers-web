@@ -85,36 +85,9 @@ html, body, #root {
 html, body { height: 100%; overflow: hidden; }
 #root { height: 100%; display: flex; flex-direction: column; }
 
-/* Pretty pill scrollbar for the main scroll container.
-   Bar lives inside .mp-scroll, so it never overlays the header or tabbar. */
-.mp-scroll { scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
-.mp-scroll::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-  background: transparent;
-}
-.mp-scroll::-webkit-scrollbar-track {
-  background: transparent;
-  border-radius: 999px;
-  margin: 6px 0;
-}
-.mp-scroll::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 999px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  min-height: 28px;
-}
-.mp-scroll::-webkit-scrollbar-thumb:active {
-  background: var(--accent-strong);
-  background-clip: padding-box;
-}
-.mp-scroll::-webkit-scrollbar-corner { background: transparent; }
-/* Hide bar on touch devices (iOS already overlays its own thin native one when needed) */
-@media (hover: none) {
-  .mp-scroll::-webkit-scrollbar { width: 0; height: 0; }
-  .mp-scroll { scrollbar-width: none; }
-}
+/* Scrollbars hidden everywhere — content still scrolls */
+* { scrollbar-width: none; }
+*::-webkit-scrollbar { width: 0; height: 0; display: none; }
 
 html[dir='rtl'][lang^='ar'] body { font-family: var(--font-arabic); }
 html[dir='rtl'][lang^='ckb'] body { font-family: var(--font-kurdish); }
@@ -174,6 +147,7 @@ ul, ol { list-style: none; padding: 0; margin: 0; }
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
 }
+.page-body > * { flex-shrink: 0; }
 
 .row {
   display: flex;
