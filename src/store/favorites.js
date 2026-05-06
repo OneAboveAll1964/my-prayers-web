@@ -5,6 +5,7 @@ const KEY = 'mp.favorites.v1'
 const DEFAULTS = {
   chapters: [],
   surahs: [],
+  ayahs: [],
   lastSurah: null,
   dhikr: {},
   recentLocations: [],
@@ -75,6 +76,29 @@ export function isBookmarkedSurah(number) {
 
 export function setLastSurah(entry) {
   update({ lastSurah: entry })
+}
+
+export function ayahKey(surahNumber, ayahNumberInSurah) {
+  return `${surahNumber}:${ayahNumberInSurah}`
+}
+
+export function toggleBookmarkAyah(surahNumber, ayahNumberInSurah, meta = {}) {
+  const k = ayahKey(surahNumber, ayahNumberInSurah)
+  const existing = state.ayahs.find((a) => a.k === k)
+  let next
+  if (existing) {
+    next = state.ayahs.filter((a) => a.k !== k)
+  } else {
+    next = [
+      { k, surah: surahNumber, ayah: ayahNumberInSurah, ...meta, addedAt: Date.now() },
+      ...state.ayahs,
+    ].slice(0, 200)
+  }
+  update({ ayahs: next })
+}
+
+export function isBookmarkedAyah(surahNumber, ayahNumberInSurah) {
+  return state.ayahs.some((a) => a.k === ayahKey(surahNumber, ayahNumberInSurah))
 }
 
 export function setDhikrCount(itemId, count) {

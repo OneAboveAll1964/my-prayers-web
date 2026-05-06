@@ -77,7 +77,7 @@ export default function Surah() {
         ) : (
           <div className="stack">
             {surah.ayahs.map((a) => (
-              <AyahRow key={a.number} ayah={a} />
+              <AyahRow key={a.number} ayah={a} surah={surah} />
             ))}
           </div>
         )}

@@ -6,6 +6,7 @@ import { PageLoader } from '../components/ui/PageLoader'
 import { TextInput } from '../components/ui/Field'
 import { SurahRow } from '../components/Quran/SurahRow'
 import { LastReadCard } from '../components/Quran/LastReadCard'
+import { AyahBookmark } from '../components/Quran/AyahBookmark'
 import { getSurahList, getSurahListCached } from '../lib/quran'
 import { useFavorites } from '../store/favorites'
 
@@ -44,7 +45,8 @@ export default function Quran() {
     [list, fav.surahs],
   )
 
-  const showSections = !query && (fav.lastSurah || bookmarked.length > 0)
+  const showSections =
+    !query && (fav.lastSurah || bookmarked.length > 0 || fav.ayahs.length > 0)
 
   const searchSlot = (
     <label className="mp-search">
@@ -73,6 +75,16 @@ export default function Quran() {
                 <div className="surface" style={{ overflow: 'hidden' }}>
                   {bookmarked.map((s) => (
                     <SurahRow key={`bm-${s.number}`} surah={s} />
+                  ))}
+                </div>
+              </div>
+            ) : null}
+            {showSections && fav.ayahs.length > 0 ? (
+              <div className="stack-sm">
+                <span className="muted small">{t('favorites.bookmarkedAyahs')}</span>
+                <div className="surface" style={{ overflow: 'hidden' }}>
+                  {fav.ayahs.map((a) => (
+                    <AyahBookmark key={a.k} entry={a} />
                   ))}
                 </div>
               </div>

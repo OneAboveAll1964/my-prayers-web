@@ -27,6 +27,17 @@
   font-size: 12px;
   font-weight: 700;
 }
+.mp-ayah-bm {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  color: var(--text-subtle);
+  transition:
+    color var(--duration-fast) var(--ease),
+    background var(--duration-fast) var(--ease);
+}
+.mp-ayah-bm.is-on { color: var(--accent); }
+.mp-ayah-bm:active { background: var(--surface-2); }
 .mp-ayah-arabic {
   font-family: var(--font-arabic);
   font-size: 26px;
