@@ -8,10 +8,9 @@
 .shell-main {
   flex: 1 1 auto;
   min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: contain;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   padding-bottom: calc(var(--tab-bar-h) + env(safe-area-inset-bottom, 0px));
 }
 
@@ -23,7 +22,7 @@
     min-height: 100dvh;
   }
   .shell-main {
-    padding-bottom: 24px;
+    padding-bottom: 0;
     grid-column: 2;
   }
 }
