@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { Analytics } from '@vercel/analytics/react'
 import { AppShell } from './components/Layout/AppShell'
 import { Spinner } from './components/ui/Spinner'
 import { useThemeSync, useSettings, useArabicFontSync } from './store/settings'
@@ -68,6 +69,7 @@ export default function App() {
           </Route>
         </Routes>
       </Suspense>
+      <Analytics />
     </BrowserRouter>
   )
 }
