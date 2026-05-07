@@ -7,11 +7,13 @@ function pad(n) {
   return String(n).padStart(2, '0')
 }
 
-function findNext(prayer, now) {
-  if (!prayer) return null
-  for (const k of PRAYER_KEYS) {
-    if (prayer[k] && prayer[k].getTime() > now.getTime()) return { key: k, at: prayer[k] }
+function findNext(prayer, tomorrow, now) {
+  if (prayer) {
+    for (const k of PRAYER_KEYS) {
+      if (prayer[k] && prayer[k].getTime() > now.getTime()) return { key: k, at: prayer[k] }
+    }
   }
+  if (tomorrow && tomorrow.fajr) return { key: 'fajr', at: tomorrow.fajr }
   return null
 }
 
@@ -24,14 +26,14 @@ function fmtRemaining(ms) {
   return `${pad(m)}:${pad(s)}`
 }
 
-export function NextPrayerCountdown({ prayer, language, timeFormat }) {
+export function NextPrayerCountdown({ prayer, tomorrow, language, timeFormat }) {
   const { t } = useTranslation()
   const [now, setNow] = useState(() => new Date())
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000)
     return () => clearInterval(id)
   }, [])
-  const next = findNext(prayer, now)
+  const next = findNext(prayer, tomorrow, now)
   const hour12 = timeFormat === '12h'
   return (
     <div className="mp-next surface fade-in">

@@ -35,13 +35,28 @@ function findCurrentIndex(prayer, now) {
   return i
 }
 
+function startOfToday() {
+  const d = new Date()
+  d.setHours(0, 0, 0, 0)
+  return d
+}
+
 export default function Home() {
   const { t, i18n } = useTranslation()
   const settings = useSettings()
   const fav = useFavorites()
   const [prayer, setPrayer] = useState(null)
+  const [tomorrow, setTomorrow] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [date] = useState(() => new Date())
+  const [date, setDate] = useState(startOfToday)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      const today = startOfToday()
+      setDate((d) => (d.getTime() === today.getTime() ? d : today))
+    }, 60_000)
+    return () => clearInterval(id)
+  }, [])
 
   const attribute = useMemo(() => buildAttribute(settings), [settings])
 
@@ -50,14 +65,14 @@ export default function Home() {
     async function run() {
       if (!settings.location) return
       setLoading(true)
-      const result = await getPrayerTimes({
-        location: settings.location,
-        date,
-        attribute,
-        useFixedPrayer: settings.useFixedTimes,
-      })
+      const next = new Date(date.getTime() + 86_400_000)
+      const [todayResult, tomorrowResult] = await Promise.all([
+        getPrayerTimes({ location: settings.location, date, attribute, useFixedPrayer: settings.useFixedTimes }),
+        getPrayerTimes({ location: settings.location, date: next, attribute, useFixedPrayer: settings.useFixedTimes }),
+      ])
       if (!cancelled) {
-        setPrayer(result)
+        setPrayer(todayResult)
+        setTomorrow(tomorrowResult)
         setLoading(false)
       }
     }
@@ -87,7 +102,7 @@ export default function Home() {
             <PrayerCardSkeleton />
           ) : (
             <>
-              <NextPrayerCountdown prayer={prayer} language={i18n.language} timeFormat={settings.timeFormat} />
+              <NextPrayerCountdown prayer={prayer} tomorrow={tomorrow} language={i18n.language} timeFormat={settings.timeFormat} />
               <PrayerCard prayer={prayer} currentIndex={idx} language={i18n.language} timeFormat={settings.timeFormat} />
             </>
           )
