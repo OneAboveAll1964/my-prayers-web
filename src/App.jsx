@@ -21,6 +21,8 @@ const Settings = lazy(() => import('./pages/Settings'))
 const SettingsLanguage = lazy(() => import('./pages/SettingsLanguage'))
 const SettingsLocation = lazy(() => import('./pages/SettingsLocation'))
 const SettingsMethod = lazy(() => import('./pages/SettingsMethod'))
+const Privacy = lazy(() => import('./pages/Privacy'))
+const Contact = lazy(() => import('./pages/Contact'))
 
 function Fallback() {
   return (
@@ -50,6 +52,8 @@ export default function App() {
       <HtmlLangSync />
       <Suspense fallback={<Fallback />}>
         <Routes>
+          <Route path="privacy" element={<Privacy />} />
+          <Route path="contact" element={<Contact />} />
           <Route element={<AppShell />}>
             <Route index element={<Home />} />
             <Route path="calendar" element={<Calendar />} />
