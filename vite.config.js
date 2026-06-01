@@ -13,12 +13,19 @@ export default defineConfig({
     useHttps && basicSsl(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg', 'icon-192.png', 'icon-512.png', 'icon-maskable.png'],
+      includeAssets: [
+        'favicon.svg',
+        'apple-touch-icon.png',
+        'icon-192.png',
+        'icon-512.png',
+        'icon-maskable.png',
+      ],
       manifest: {
         id: '/',
-        name: 'My Prayers',
-        short_name: 'Prayers',
-        description: 'Prayer times, azkars, qibla, names of Allah, and Quran',
+        name: 'Sakina — Prayer Times & Quran',
+        short_name: 'Sakina',
+        description:
+          'Accurate prayer times with adhan, Qibla direction, the Holy Quran, daily adhkar and tasbih.',
         theme_color: '#fbfbfa',
         background_color: '#fbfbfa',
         display: 'standalone',
