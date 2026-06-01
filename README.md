@@ -1,4 +1,4 @@
-# My Prayers — Web
+# Sakina — Web
 
 A responsive, installable prayer-times PWA. Web port of the React Native package
 [**@shkomaghdid/react-native-prayer-times**](https://github.com/OneAboveAll1964/react-native-prayer-times) —
