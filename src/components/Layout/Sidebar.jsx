@@ -28,7 +28,7 @@ export function Sidebar() {
   return (
     <aside className="mp-side" aria-label="Primary">
       <div className="mp-side-brand">
-        <span className="mp-side-mark" aria-hidden="true" />
+        <img className="mp-side-mark" src="/icon-192.png" alt="" aria-hidden="true" />
         <span className="mp-side-title">{t('appName')}</span>
       </div>
       <nav className="mp-side-nav">
