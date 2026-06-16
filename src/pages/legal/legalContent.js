@@ -2,9 +2,10 @@
 // Hosted on the website only because the App Store / Google Play require a
 // public URL — the content describes the mobile app, not this website.
 //
-// Facts reflect the actual app: no accounts, no ads, no analytics/tracking SDKs,
-// location used once on-device to detect the city, Quran content fetched from
-// public providers, everything else stored locally on the device.
+// Facts reflect the actual app: no accounts, no ads, anonymous Firebase
+// Analytics on Android/iOS only (no personal data, no coordinates), location
+// used once on-device to detect the city, Quran content fetched from public
+// providers, everything else stored locally on the device.
 
 export const APP_NAME = 'Sakina'
 export const PUBLISHER = 'Shko Maghdid'
@@ -12,7 +13,7 @@ export const CONTACT_EMAIL = 'shkoma.ranya@gmail.com'
 export const GITHUB_URL = 'https://github.com/OneAboveAll1964'
 export const APP_STORE_URL = '' // TODO: paste App Store listing URL
 export const PLAY_STORE_URL = '' // TODO: paste Google Play listing URL
-export const LAST_UPDATED = '2026-06-01'
+export const LAST_UPDATED = '2026-06-16'
 
 // Third-party services the app talks to (Quran content + assets only).
 const PROVIDERS = ['quran.com', 'qurancdn.com', 'everyayah.com', 'archive.org', 'github.com']
@@ -23,19 +24,23 @@ export const LEGAL = {
     lastUpdated: 'Last updated',
     privacy: {
       title: 'Privacy Policy',
-      intro: `This Privacy Policy explains how the ${APP_NAME} mobile app ("the app", "we") handles your information. ${APP_NAME} is published by ${PUBLISHER}. We built ${APP_NAME} to respect your privacy: it has no user accounts, shows no ads, and includes no analytics or tracking SDKs.`,
+      intro: `This Privacy Policy explains how the ${APP_NAME} mobile app ("the app", "we") handles your information. ${APP_NAME} is published by ${PUBLISHER}. We built ${APP_NAME} to respect your privacy: it has no user accounts and shows no ads, and it never collects data that identifies you personally. To understand which features people find useful, it collects anonymous, non-identifying usage analytics, described below.`,
       sections: [
         {
           h: 'The short version',
-          p: `${APP_NAME} does not collect, sell, or share your personal data. We do not track you. Your settings and chosen location stay on your device.`,
+          p: `${APP_NAME} does not collect, sell, or share any data that identifies you — no name, email, phone, or precise location. It does collect anonymous usage analytics — which features you open and broad milestones such as finishing a khatma — through Google Firebase Analytics, so we can see what to improve. Your settings and chosen city stay on your device.`,
+        },
+        {
+          h: 'Anonymous analytics',
+          p: `To understand which features are useful and where people get stuck, ${APP_NAME} sends anonymous usage events to Google Firebase Analytics. This runs on Android and iOS only — the macOS app includes no analytics. The events cover which screens and features you open, broad in-app actions (for example that a search was started or a bookmark was added), and anonymous milestones such as completing the Quran by reading or memorization (khatma). To group the data we include only non-identifying context — your app language, theme, prayer calculation method and country (a two-letter code) — alongside the technical identifiers Firebase needs to count app instances and sessions. We never collect your name, email, phone, account, precise location or coordinates, or the actual text you read, search, bookmark or memorize. No advertising identifiers are used, and the data is never sold or used for advertising. It is handled under Google's Firebase privacy terms and cannot be tied back to you individually.`,
         },
         {
           h: 'Information we do NOT collect',
           list: [
             'No account, sign-up, name, email or phone number is required or collected.',
-            'No advertising identifiers and no third-party advertising.',
-            'No analytics, crash-tracking or behavioural tracking SDKs.',
-            'We do not build a profile of you or sell data to anyone.',
+            'No precise location — your coordinates never leave your device; only a two-letter country code is used to group analytics.',
+            'No reading content — what you read, search for, bookmark or memorize is never collected, only that an action happened.',
+            'No advertising identifiers, no ads, and no selling of data; we never build a profile to identify or target you.',
           ],
         },
         {
@@ -88,19 +93,23 @@ export const LEGAL = {
     lastUpdated: 'آخر تحديث',
     privacy: {
       title: 'سياسة الخصوصية',
-      intro: `توضّح سياسة الخصوصية هذه كيف يتعامل تطبيق ${APP_NAME} للهاتف ("التطبيق"، "نحن") مع معلوماتك. ${APP_NAME} منشور بواسطة ${PUBLISHER}. صُمّم ${APP_NAME} ليحترم خصوصيتك: لا يحتوي على حسابات مستخدمين، ولا يعرض إعلانات، ولا يتضمّن أي أدوات تحليلات أو تتبّع.`,
+      intro: `توضّح سياسة الخصوصية هذه كيف يتعامل تطبيق ${APP_NAME} للهاتف ("التطبيق"، "نحن") مع معلوماتك. ${APP_NAME} منشور بواسطة ${PUBLISHER}. صُمّم ${APP_NAME} ليحترم خصوصيتك: لا يحتوي على حسابات مستخدمين، ولا يعرض إعلانات، ولا يجمع أبدًا أي بيانات تعرّفك شخصيًا. ولفهم الميزات التي يجدها الناس مفيدة، يجمع التطبيق تحليلات استخدام مجهولة لا تعرّف بهويتك، كما هو موضّح أدناه.`,
       sections: [
         {
           h: 'باختصار',
-          p: `${APP_NAME} لا يجمع بياناتك الشخصية ولا يبيعها ولا يشاركها. نحن لا نتتبّعك. تبقى إعداداتك والموقع الذي تختاره على جهازك.`,
+          p: `${APP_NAME} لا يجمع أي بيانات تعرّفك بهويتك ولا يبيعها ولا يشاركها — لا اسم ولا بريد إلكتروني ولا هاتف ولا موقع دقيق. لكنه يجمع تحليلات استخدام مجهولة — الميزات التي تفتحها والمحطّات العامّة مثل إتمام ختمة للقرآن — عبر Google Firebase Analytics (تحليلات جوجل فايربيس)، كي نعرف ما الذي ينبغي تحسينه. وتبقى إعداداتك والمدينة التي تختارها على جهازك.`,
+        },
+        {
+          h: 'تحليلات مجهولة',
+          p: `لفهم الميزات المفيدة والمواضع التي يتعثّر فيها الناس، يرسل ${APP_NAME} أحداث استخدام مجهولة إلى Google Firebase Analytics (تحليلات جوجل فايربيس). ويجري هذا على أندرويد و iOS فقط — أما تطبيق macOS فلا يتضمّن أي تحليلات. وتشمل هذه الأحداث الشاشات والميزات التي تفتحها، والإجراءات العامّة داخل التطبيق (مثل بدء عملية بحث أو إضافة إشارة مرجعية)، ومحطّات مجهولة مثل ختم القرآن قراءةً أو حفظًا (ختمة). ولتجميع البيانات نُضمّن سياقًا لا يعرّف بهويتك فقط — لغة التطبيق، والمظهر، وطريقة حساب مواقيت الصلاة، والبلد (رمز من حرفين) — إلى جانب المعرّفات التقنية التي يحتاجها Firebase لإحصاء نُسخ التطبيق والجلسات. ولا نجمع أبدًا اسمك أو بريدك الإلكتروني أو هاتفك أو حسابك أو موقعك الدقيق أو إحداثياتك، ولا النص الفعلي الذي تقرؤه أو تبحث عنه أو تضيفه إلى الإشارات المرجعية أو تحفظه. ولا تُستخدم أي معرّفات إعلانية، ولا تُباع البيانات أبدًا ولا تُستخدم للإعلانات. وتُعالَج وفق شروط خصوصية Firebase من Google، ولا يمكن ربطها بك بصفتك فردًا.`,
         },
         {
           h: 'معلومات لا نجمعها',
           list: [
             'لا يلزم ولا يُجمع أي حساب أو تسجيل أو اسم أو بريد إلكتروني أو رقم هاتف.',
-            'لا معرّفات إعلانية ولا إعلانات من أطراف ثالثة.',
-            'لا أدوات تحليلات أو تتبّع للأعطال أو تتبّع للسلوك.',
-            'لا نُنشئ ملفًا تعريفيًا عنك ولا نبيع البيانات لأي جهة.',
+            'لا موقع دقيق — لا تغادر إحداثياتك جهازك أبدًا؛ ويُستخدم رمز بلد من حرفين فقط لتجميع التحليلات.',
+            'لا محتوى قراءة — ما تقرؤه أو تبحث عنه أو تضيفه إلى الإشارات المرجعية أو تحفظه لا يُجمع أبدًا، بل يُسجّل فقط أنّ إجراءً قد حدث.',
+            'لا معرّفات إعلانية ولا إعلانات ولا بيع للبيانات؛ ولا نُنشئ ملفًا تعريفيًا عنك لتحديد هويتك أو استهدافك.',
           ],
         },
         {
